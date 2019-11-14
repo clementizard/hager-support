@@ -1,7 +1,7 @@
 import React from 'react';
-
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import GlobalStyles from '../styles/common/GlobalStyles';
 
 if (process.env.NODE_ENV !== 'production') {
 	const whyDidYouRender = require('@welldone-software/why-did-you-render/dist/no-classes-transpile/umd/whyDidYouRender.min.js');
@@ -9,30 +9,49 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default class MyDocument extends Document {
-	static getInitialProps ({ renderPage }) {
-		// Returns an object like: { html, head, errorHtml, chunks, styles }
-		// Step 1: Create an instance of ServerStyleSheet
+	static async getInitialProps(ctx) {
 		const sheet = new ServerStyleSheet();
+		const originalRenderPage = ctx.renderPage;
 		
-		// Step 2: Retrieve styles from components in the page
-		const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
-		
-		// Step 3: Extract the styles as <style> tags
-		const styleTags = sheet.getStyleElement();
-		
-		// Step 4: Pass styleTags as a prop
-		return { ...page, styleTags };
-		// return renderPage();
+		try {
+			ctx.renderPage = () =>
+				originalRenderPage({
+					enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+				});
+			
+			const initialProps = await Document.getInitialProps(ctx);
+			return {
+				...initialProps,
+				styles: (
+					<>
+						{initialProps.styles}
+						{sheet.getStyleElement()}
+					</>
+				),
+			}
+		} finally {
+			sheet.seal()
+		}
 	}
 	
 	render () {
 		return (
 			<html>
 				<Head>
-					{/* Step 5: Output the styles in the head  */}
+					<meta charSet="utf-8" />
+					<meta
+						name="viewport"
+						content="initial-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no, minimal-ui"
+						key="viewport"
+					/>
+					<meta
+						name="theme-color"
+						content="white"
+					/>
 					{this.props.styleTags}
 				</Head>
 				<body>
+					<GlobalStyles/>
 					<Main />
 					<NextScript />
 				</body>

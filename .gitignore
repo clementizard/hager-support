@@ -6,6 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 .idea
+.serverless
+.serverless_nextjs
+.env
+bundles
 
 # Runtime data
 pids

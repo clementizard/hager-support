@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const DashboardIcon = styled.div`
-	width: 48px;
-	height: 48px;
-	position: relative;
+  position: relative;
+	height: 72px;
+  line-height: 72px;
 `;

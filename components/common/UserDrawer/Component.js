@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import Dashboard from '@material-ui/icons/Dashboard';
 import AccountBox from '@material-ui/icons/AccountBox';
@@ -26,7 +27,6 @@ const UserDrawer = () => {
           </IconButton>
         </DashboardIcon>
       </Link>
-      <input type="text"/>
     </Container>
   );
 };

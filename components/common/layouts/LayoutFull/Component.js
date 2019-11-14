@@ -1,17 +1,20 @@
 import React, { memo } from 'react';
 
 import UserDrawer from '../../UserDrawer';
-import { Container } from './Styles';
+import {
+  Container,
+  Inner,
+} from './Styles';
 import { propTypes, defaultProps } from './Props';
 
 const LayoutFull = ({ children }) => {
   return (
-    <>
+    <Container>
       <UserDrawer />
-      <Container>
+      <Inner>
         {children}
-      </Container>
-    </>
+      </Inner>
+    </Container>
   );
 };
 LayoutFull.propTypes = propTypes;

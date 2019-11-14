@@ -5,33 +5,43 @@
     "start": "next start",
     "analyze": "cross-env BUNDLE_ANALYZE=both next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
-    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "test/*",
-      "docs/*",
-      "components/*",
-      ".templates/*",
-      "pages/*",
-      "public/*",
-      "styles/*",
-      "bundles/*"
-    ]
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "docs": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@material-ui/core": "^4.6.0",
+    "@material-ui/core": "4.6.1",
     "@material-ui/icons": "^4.5.1",
     "@welldone-software/why-did-you-render": "^3.3.9",
     "cross-env": "^6.0.3",
     "dotenv": "^8.2.0",
     "next": "^9.1.3",
+    "next-fonts": "^0.19.0",
+    "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@storybook/addon-actions": "^5.2.6",
+    "@storybook/addon-links": "^5.2.6",
+    "@storybook/addons": "^5.2.6",
+    "@storybook/react": "^5.2.6",
+    "@storybook/theming": "^5.2.6",
     "@zeit/next-bundle-analyzer": "^0.1.2",
-    "babel-plugin-styled-components": "^1.10.6"
+    "babel-loader": "^8.0.6",
+    "babel-plugin-react-docgen": "^3.2.0",
+    "babel-plugin-styled-components": "^1.10.6",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-cypress": "^2.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "react-docgen": "^4.1.1",
+    "serverless-next.js": "^1.5.0",
+    "storybook-addon-react-docgen": "^1.2.28"
   }
 }
