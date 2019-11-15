@@ -9,7 +9,6 @@ const User = () => {
 		</>
 	);
 };
-User.Layout = LayoutFull;
 User.getLayout = page => (
 	<LayoutFull>{page}</LayoutFull>
 );

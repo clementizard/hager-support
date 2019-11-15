@@ -9,7 +9,6 @@ function Home() {
 Home.getLayout = page => (
 	<LayoutFull>{page}</LayoutFull>
 );
-Home.Layout = LayoutFull;
 
 Home.whyDidYouRender = true;
 

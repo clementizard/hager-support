@@ -22,4 +22,3 @@ LayoutFull.defaultProps = defaultProps;
 LayoutFull.whyDidYouRender = true;
 
 export default memo(LayoutFull);
-

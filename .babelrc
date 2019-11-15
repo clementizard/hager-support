@@ -3,8 +3,8 @@
     "development": {
       "presets": ["next/babel"],
       "plugins": [
+        ["react-docgen"],
         [
-          "react-docgen",
           "styled-components",
           {
             "ssr": true,

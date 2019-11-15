@@ -4,6 +4,8 @@ import styled from 'styled-components';
 export const Container = styled(Paper)`
 	position: relative;
 	height: 100%;
+	min-width: 400px;
+	max-width: 600px;
 	font-weight: 500;
 	padding: 16px;
 	overflow: auto;
