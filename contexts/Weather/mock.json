@@ -1,0 +1,38 @@
+[{
+  "title": "Domovea - Cloud service",
+  "description": "Description",
+  "services": [
+    {
+      "status": "on",
+      "name": "Prepare my installation",
+      "functions": [
+        "Create end-user account",
+        "Finalize Handover"
+      ]
+    },
+    {
+      "status": "off",
+      "name": "Control my installation through apps",
+      "functions": [
+        "Domovea client app available on Apple store",
+        "Domovea client app available on Google play"
+      ]
+    },
+    {
+      "status": "off",
+      "name": "Manage my installation",
+      "functions": [
+        "Invite restricted user",
+        "List all my installation from end user account"
+      ]
+    },
+    {
+      "status": "on",
+      "name": "Manage my installation2",
+      "functions": [
+        "Function 1",
+        "Function 2"
+      ]
+    }
+  ]
+}]

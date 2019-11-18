@@ -1,14 +1,12 @@
 import React from 'react';
 
-import LayoutFull from '../components/common/layouts/LayoutFull';
+import { getLayout } from '../components/common/layouts/LayoutFull';
 import Dashboard from '../components/Dashboard';
 
 function Home() {
 	return (<Dashboard />)
 }
-Home.getLayout = page => (
-	<LayoutFull>{page}</LayoutFull>
-);
+Home.getLayout = getLayout;
 
 Home.whyDidYouRender = true;
 

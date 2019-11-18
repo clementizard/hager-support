@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 
-import UserDrawer from '../../UserDrawer';
+import { WeatherProvider } from '../../../../contexts/Weather/';
+import UserDrawer from './UserDrawer';
 import {
   Container,
   Inner,
@@ -9,12 +10,14 @@ import { propTypes, defaultProps } from './Props';
 
 const LayoutFull = ({ children }) => {
   return (
-    <Container>
-      <UserDrawer />
-      <Inner>
-        {children}
-      </Inner>
-    </Container>
+    <WeatherProvider>
+      <Container>
+        <UserDrawer />
+        <Inner>
+          {children}
+        </Inner>
+      </Container>
+    </WeatherProvider>
   );
 };
 LayoutFull.propTypes = propTypes;

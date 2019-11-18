@@ -6,11 +6,12 @@ export const Container = styled.div`
 	height: 100vh;
 	left: 0;
 	top: 0;
-	background-color: #7f82ff;
-	box-shadow: 0 3px 6px black;
+	background-color: var(--default-normal);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	z-index: 1;
 `;
 
 export const DashboardIcon = styled.div`

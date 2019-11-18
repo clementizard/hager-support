@@ -1,5 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
+import {
+	defaultNormal,
+	defaultDark,
+	errorNormal,
+} from './Colors';
 import Helvetica from '../../public/fonts/Helvetica/Helvetica.otf';
 import HelveticaSvg from '../../public/fonts/Helvetica/Helvetica.svg';
 import HelveticaBold from '../../public/fonts/Helvetica/Helvetica-Bold.otf';
@@ -8,7 +13,6 @@ import HelveticaLight from '../../public/fonts/Helvetica/Helvetica-Light.otf';
 import HelveticaLightSvg from '../../public/fonts/Helvetica/Helvetica-Light.svg';
 import HelveticaOblique from '../../public/fonts/Helvetica/Helvetica-Oblique.otf';
 import HelveticaObliqueSvg from '../../public/fonts/Helvetica/Helvetica-Oblique.svg';
-
 
 export default createGlobalStyle`
 	@font-face {
@@ -41,6 +45,9 @@ export default createGlobalStyle`
 	}
 
 	body {
+		--default-normal: ${defaultNormal};
+		--default-dark: ${defaultDark};
+		--error-normal: ${errorNormal};
     position: fixed;
     top: 0;
     left: 0;

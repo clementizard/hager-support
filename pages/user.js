@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LayoutFull from '../components/common/layouts/LayoutFull';
+import { getLayout } from '../components/common/layouts/LayoutUser';
 
 const User = () => {
 	return (
@@ -9,9 +9,7 @@ const User = () => {
 		</>
 	);
 };
-User.getLayout = page => (
-	<LayoutFull>{page}</LayoutFull>
-);
+User.getLayout = getLayout;
 
 export default User;
 
