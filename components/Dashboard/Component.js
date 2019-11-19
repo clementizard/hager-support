@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import {useWeatherState, updateWeather, useWeatherDispatch} from '../../contexts/Weather/index';
+import useWeather from 'Services/Weather/hook';
 import Card from './Card';
 import { Container } from './Styles';
 import { propTypes, defaultProps } from './Props';
 
 const Dashboard = () => {
-  const { status, data } = useWeatherState();
-  const dispatch = useWeatherDispatch();
-  
-  useEffect(() => {
-    if (!data.length) updateWeather(dispatch);
-  }, []);
+  const { status, data } = useWeather();
 
   return (
     <Container>

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import { WeatherProvider } from '../../../../contexts/Weather/';
+import { WeatherProvider } from 'Services/Weather';
 import UserDrawer from './UserDrawer';
 import {
   Container,

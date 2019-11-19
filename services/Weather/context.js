@@ -6,7 +6,7 @@ import weatherReducer from './reducer';
 const WeatherStateContext = createContext();
 const WeatherDispatchContext = createContext();
 
-export const WeatherProvider = ({children}) => {
+export const WeatherProvider = ({ children }) => {
 	const [state, dispatch] = React.useReducer(weatherReducer, defaultState);
 	
 	return (

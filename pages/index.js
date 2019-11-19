@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { getLayout } from '../components/common/layouts/LayoutFull';
-import Dashboard from '../components/Dashboard';
+import { getLayout } from 'Layouts/LayoutFull';
+import Dashboard from 'Components/Dashboard';
 
 function Home() {
 	return (<Dashboard />)

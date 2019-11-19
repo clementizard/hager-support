@@ -3,6 +3,7 @@
     "development": {
       "presets": ["next/babel"],
       "plugins": [
+        "styled-jsx/babel",
         ["react-docgen"],
         [
           "styled-components",
@@ -16,6 +17,7 @@
     "production": {
       "presets": ["next/babel"],
       "plugins": [
+        "styled-jsx/babel",
         [
           "styled-components",
           {
