@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,12 +21,17 @@ import {
 import { propTypes, defaultProps } from './Props';
 
 const InstallPanel = () => {
-  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const { id } = router.query;
   
+  const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
-
+  
+  console.log('id: ', id);
+  
+  if (!id) return <Container />;
   return (
     <Container>
       <List disablePadding>
@@ -33,7 +39,7 @@ const InstallPanel = () => {
           <ListItemIcon>
             <Search />
           </ListItemIcon>
-          <TextField label="Search" fullWidth />
+          <TextField variant="outlined" label="Search" fullWidth />
         </ListItem>
         <Divider />
         <ListItem button>
