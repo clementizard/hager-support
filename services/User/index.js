@@ -1,4 +1,4 @@
-import { updateUser } from './functions';
+import { getUser, getDevices } from './functions';
 import {
 	UserProvider,
 	useUserDispatch,
@@ -9,5 +9,6 @@ export {
 	UserProvider,
 	useUserState,
 	useUserDispatch,
-	updateUser,
+	getUser,
+	getDevices,
 };

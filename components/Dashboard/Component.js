@@ -1,4 +1,5 @@
 import React from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import useWeather from 'Services/Weather/hook';
 import Card from './Card';
@@ -23,7 +24,7 @@ const Dashboard = () => {
           offServices={metric.offServices}
         />
       ))}
-      {status === 'loading' && <div>LOADING...</div>}
+      {status === 'loading' && <CircularProgress />}
       {status === 'error' && <div>{data}</div>}
     </Container>
   );

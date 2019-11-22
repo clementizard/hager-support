@@ -1,11 +1,10 @@
 require('dotenv').config();
-path = require('path');
+const path = require('path');
 
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 const withFonts = require('next-fonts');
 
 const nextConfig = {
-	target: 'serverless',
 	analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
 	analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
 	bundleAnalyzerConfig: {

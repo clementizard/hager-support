@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 
 import { WeatherProvider } from 'Services/Weather';
+import { UserProvider } from 'Services/User';
 import UserDrawer from './UserDrawer';
 import {
   Container,
@@ -11,12 +12,14 @@ import { propTypes, defaultProps } from './Props';
 const LayoutFull = ({ children }) => {
   return (
     <WeatherProvider>
-      <Container>
-        <UserDrawer />
-        <Inner>
-          {children}
-        </Inner>
-      </Container>
+      <UserProvider>
+        <Container>
+          <UserDrawer />
+          <Inner>
+            {children}
+          </Inner>
+        </Container>
+      </UserProvider>
     </WeatherProvider>
   );
 };
