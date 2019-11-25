@@ -6,20 +6,24 @@ import {
 } from './requests';
 
 export const getDevices = async (dispatch, userId, installId) => {
-	dispatch({ type: 'updateStart' });
+	dispatch({ type: 'deviceUpdateStart', payload: { userId, installId } });
 	try {
-		const data = await getNewUser();
+		const data = await requestDevices(userId, installId);
 		dispatch({
-			type: 'updateSuccess',
-			payload: formatNewUser(data),
+			type: 'deviceUpdateSuccess',
+			payload: {
+				data,
+				userId,
+				installId,
+			},
 		});
 	} catch (error) {
-		dispatch({ type: 'updateFail', payload: error });
+		dispatch({ type: 'deviceUpdateFail', payload: { error, userId, installId } });
 	}
 };
 
 export const getUser = async (dispatch, userId) => {
-	dispatch({ type: 'updateStart' });
+	dispatch({ type: 'userUpdateStart', payload: { userId } });
 	try {
 		const userData = await requestUser(userId);
 		const finalUser = {
@@ -27,16 +31,20 @@ export const getUser = async (dispatch, userId) => {
 			installations: [],
 		};
 		const installsData = await requestInstalls(finalUser.id);
+		console.log('INSTALLS: ', installsData);
 		await asyncForEach(installsData, async (install) => {
-			const devicesData = await requestDevices(finalUser.id, install.id);
-			install.devices = devicesData;
+			install.devices = await requestDevices(finalUser.id, install.id);
 		});
 		finalUser.installations = installsData;
+		console.log('USER: ', finalUser);
 		dispatch({
-			type: 'updateSuccess',
-			payload: finalUser,
+			type: 'userUpdateSuccess',
+			payload: {
+				userId,
+				data: finalUser,
+			},
 		});
 	} catch (error) {
-		dispatch({ type: 'updateFail', payload: error });
+		dispatch({ type: 'userUpdateFail', payload: { error, userId } });
 	}
 };

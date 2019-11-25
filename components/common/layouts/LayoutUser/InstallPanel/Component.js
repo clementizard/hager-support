@@ -22,11 +22,15 @@ import {
 import { propTypes, defaultProps } from './Props';
 
 const InstallPanel = ({
-  open,
-  onClose,
 }) => {
+  const [open, setOpen] = useState(true);
+  const handleDrawerOpen = () => {
+    setOpen(!open);
+  };
+  
   const router = useRouter();
   const { id } = router.query;
+  console.log(id, router)
   const installations = [];
   
   const [listOpen, setListOpen] = useState([]);
@@ -50,7 +54,7 @@ const InstallPanel = ({
             justifyContent: 'flex-end',
           }}
         >
-          <IconButton onClick={onClose}>
+          <IconButton onClick={handleDrawerOpen}>
             <ChevronLeftIcon />
           </IconButton>
         </div>

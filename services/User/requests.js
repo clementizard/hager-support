@@ -15,7 +15,7 @@ export const requestUser = async (userId) => {
 export const requestInstalls = async (userId) => {
 	// return await axios.get(`/users/${userId}/installations`);
 	return await new Promise((resolve) => {
-		const foundInstall = mockInstall.find(install => install.userId === userId);
+		const foundInstall = mockInstall.filter(install => install.userId === userId);
 		setTimeout(() => resolve(foundInstall), 1000);
 	});
 };
@@ -24,7 +24,7 @@ export const requestInstalls = async (userId) => {
 export const requestDevices = async (userId, installId) => {
 	// return await axios.get(`/users/${userId}/installations/${installId}/devices`);
 	return await new Promise((resolve) => {
-		const foundDevices = mockDevices.find(device => device.installId === installId);
+		const foundDevices = mockDevices.filter(device => device.installId === installId);
 		setTimeout(() => resolve(foundDevices), 1000);
 	});
 };
