@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useRouter } from 'next/router';
 import IconButton from '@material-ui/core/IconButton';
-import Drawer from '@material-ui/core/Drawer';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -10,83 +10,86 @@ import Collapse from '@material-ui/core/Collapse';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 import Search from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import useList from 'react-use/lib/useList';
 
+import { useUserState } from 'Services/User';
 import {
   Container,
+  Drawer,
 } from './Styles';
 import { propTypes, defaultProps } from './Props';
 
 const InstallPanel = ({
+  open,
+  onClose,
 }) => {
-  const [open, setOpen] = useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(!open);
-  };
-  
   const router = useRouter();
   const { id } = router.query;
-  console.log(id, router)
-  const installations = [];
+  const { data } = useUserState();
   
-  const [listOpen, setListOpen] = useState([]);
+  const [listOpen, { updateAt }] = useList([]);
   const handleOpen = id => () => {
-    listOpen[id] = !listOpen[id];
-    setListOpen(listOpen);
+    updateAt(id, !listOpen[id]);
   };
   
-  if (!id) return <Container />;
+  if (!id || !data[id]) return <Container />;
   return (
     <Container>
-      <Drawer
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
+      <Drawer open={open}>
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'flex-end',
+            justifyContent: 'flex-start',
+            height: 72,
+            paddingLeft: 16,
+            backgroundColor: 'var(--default-normal)'
           }}
         >
-          <IconButton onClick={handleDrawerOpen}>
+          <IconButton onClick={onClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
         <Divider />
         <List disablePadding>
-          <ListItem>
-            <ListItemIcon>
-              <Search />
-            </ListItemIcon>
-            <TextField variant="outlined" label="Search" fullWidth />
+          <ListItem style={{ padding: 24 }}>
+            <TextField
+              variant="outlined"
+              label="Search"
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search />
+                  </InputAdornment>
+                ),
+              }}
+            />
           </ListItem>
           <Divider />
-          {installations.map((install, id) => (
-            <>
-              <ListItem button onClick={handleOpen(id)}>
+          {data[id].installations.map((install, installId) => (
+            <Fragment key={install.id}>
+              <ListItem button onClick={handleOpen(installId)}>
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Inbox" />
-                {listOpen[id] ? <ExpandLess /> : <ExpandMore />}
+                <ListItemText primary={install.id} />
+                {listOpen[installId] ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
-              <Collapse in={listOpen[id]} timeout="auto" unmountOnExit>
+              <Collapse in={listOpen[installId]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding style={{ paddingLeft: 32 }}>
-                  <ListItem button>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
-                    <ListItemText primary="Starred" />
-                  </ListItem>
+                  {install.devices.map((device) => (
+                    <ListItem button key={device.id}>
+                      <ListItemText primary={device.id} />
+                    </ListItem>
+                  ))}
                 </List>
               </Collapse>
-            </>
+            </Fragment>
           ))}
         </List>
       </Drawer>

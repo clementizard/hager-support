@@ -7,6 +7,8 @@ export default (state, {
 		data,
 	}
 }) => {
+	let newState;
+	
 	switch (type) {
 		case 'deviceUpdateStart':
 			return {
@@ -74,7 +76,7 @@ export default (state, {
 				},
 			};
 		case 'userUpdateSuccess':
-			return {
+			newState = {
 				status: {
 					...state.status,
 					users: {
@@ -87,6 +89,9 @@ export default (state, {
 					[userId]: data,
 				},
 			};
+			
+			if (typeof window !== 'undefined') localStorage.setItem('User', JSON.stringify(newState));
+			return newState;
 		case 'userUpdateFail':
 			return {
 				status: {

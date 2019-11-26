@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import {
   Container,
@@ -11,10 +12,19 @@ import AppBar from './AppBar';
 import InstallPanel from './InstallPanel';
 
 const LayoutUser = ({ children }) => {
+  const router = useRouter();
+  const { id } = router.query;
+  
+  const [open, setOpen] = useState(Boolean(id));
+
+  const handleOpen = state => () => {
+    setOpen(state);
+  };
+  
   return (
-    <Container>
-      <AppBar />
-      <InstallPanel />
+    <Container drawerOpen={open}>
+      <AppBar drawerOpen={open} drawerDisabled={!Boolean(id)} onOpen={handleOpen(true)} />
+      <InstallPanel open={open} onClose={handleOpen(false)} />
       <Inner>
         {children}
       </Inner>

@@ -7,7 +7,9 @@ const UserStateContext = createContext();
 const UserDispatchContext = createContext();
 
 export const UserProvider = ({ children }) => {
-	const [state, dispatch] = React.useReducer(userReducer, defaultState);
+	const oldStateUnparsed = typeof window !== 'undefined' ? localStorage.getItem('User') : null;
+	const oldState = oldStateUnparsed ? JSON.parse(oldStateUnparsed) : null;
+	const [state, dispatch] = React.useReducer(userReducer, oldState || defaultState);
 	
 	return (
 		<UserStateContext.Provider value={state}>

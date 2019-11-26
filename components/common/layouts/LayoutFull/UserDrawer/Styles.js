@@ -19,3 +19,6 @@ export const DashboardIcon = styled.div`
 	height: 72px;
   line-height: 72px;
 `;
+export const StyledTooltip = styled.div`
+
+`;

@@ -1,13 +1,18 @@
 import React from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/icons/Menu';
 
 import {
   Container,
 } from './Styles';
 import { propTypes, defaultProps } from './Props';
-
 import ChipIndicator from './ChipIndicator';
 
-const AppBar = () => {
+const AppBar = ({
+  drawerOpen,
+  drawerDisabled,
+  onOpen,
+}) => {
   const metrics = [{
     title: 'Domovea - Cloud service',
     description: 'Description',
@@ -62,6 +67,13 @@ const AppBar = () => {
   
   return (
     <Container>
+      {(!drawerOpen && !drawerDisabled) &&
+        <div style={{ position: 'absolute', left: 16 }}>
+          <IconButton onClick={onOpen}>
+            <Menu />
+          </IconButton>
+        </div>
+      }
       {metrics.map((metric) => (
         <ChipIndicator
           key={metric.title}
