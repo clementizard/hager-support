@@ -1,38 +1,52 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import Arrow from '@material-ui/icons/KeyboardArrowDown';
 
 import {
   Container,
   Title,
-  Subtitle,
   Status,
   Service,
   Function,
+  ExtendBtn,
 } from './Styles';
 import { propTypes, defaultProps } from './Props';
 
 export const Card = ({
   title,
-  description,
   status,
   offServices,
   onServices,
 }) => {
+  const hasServices = Boolean(offServices.length || onServices.length);
+  const [extended, setExtended] = useState(hasServices);
+  const handleExtend = () => setExtended(!extended);
+
   return (
     <Container>
-      <Title>{title}</Title>
-      <Subtitle>{description}</Subtitle>
-      <Status error={!status.ok}>{status.string}</Status>
-      {offServices.map((service) => (
-        <Fragment key={service.name}>
-          <Service error>{service.name}</Service>
-          {service.functions.map((serviceFunction) => (
-            <Function key={serviceFunction}>{serviceFunction}</Function>
+      {hasServices &&
+        <ExtendBtn rotate={extended}>
+          <IconButton onClick={handleExtend}>
+            <Arrow />
+          </IconButton>
+        </ExtendBtn>
+      }
+      <Title margin={extended}><Status value={status} />{title}</Title>
+      {(hasServices && extended) && (
+        <>
+          {offServices.map((service) => (
+            <Fragment key={service.name}>
+              <Service><Status value={service.status} small />{service.name}</Service>
+              {service.functions.map((serviceFunction) => (
+                <Function key={serviceFunction}>{serviceFunction}</Function>
+              ))}
+            </Fragment>
           ))}
-        </Fragment>
-      ))}
-      {onServices.map((service, id) => (
-        <Service key={`${service.name}${id}`}>{service.name}</Service>
-      ))}
+          {onServices.map((service, id) => (
+            <Service key={`${service.name}${id}`}><Status value={service.status} small />{service.name}</Service>
+          ))}
+        </>
+      )}
     </Container>
   );
 };

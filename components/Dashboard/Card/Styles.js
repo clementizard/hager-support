@@ -1,36 +1,56 @@
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import styled from 'styled-components';
 
+export const ExtendBtn = styled(({ rotate, ...props }) => <div {...props} />)`
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	transform: rotate(${({ rotate }) => rotate ? 180 : 0}deg);
+	z-index: 2;
+`;
+export const PageTitle = styled.div`
+	font-size: 48px;
+	color: var(--text-primary-color);
+	margin: 24px 0 0 48px;
+`;
 export const Container = styled(Paper)`
 	position: relative;
-	height: 100%;
 	min-width: 400px;
-	max-width: 600px;
 	font-weight: 500;
 	padding: 16px;
 	overflow: auto;
+	max-height: 215px;
 `;
-export const Title = styled.div`
+export const Title = styled(({ margin, ...props }) => <div {...props} />)`
+	position: relative;
 	font-size: 32px;
 	font-weight: 600;
-	color: #3c3c3c;
+	color: var(--text-primary-color);
+	padding-left: 24px;
+	margin-bottom: ${({ margin }) => margin ? 16 : 0}px;
 `;
-export const Subtitle = styled.div`
-	font-size: 24px;
-	color: #4c4c4c;
-`;
-export const Status = styled(({ error, ...props }) => <div {...props} />)`
+export const Status = styled(({ value, small, ...props }) => <div {...props} />)`
 	position: absolute;
-	color: ${({ error }) => error ? 'red' : '#3c3c3c'};
-	top: 16px;
-	right: 16px;
-	font-size: 32px;
+	width: ${({ small }) => small ? 8 : 16}px;
+	height: ${({ small }) => small ? 8 : 16}px;
+	top: 50%;
+	left: 6px;
+	transform: translate(-50%, -50%);
+	border-radius: 50px;
+	background-color: var(--status-${({ value }) => value === 'ok' ? 'success' : (value === 'warn' ? 'warning' : 'error')}-foreground);
 `;
-export const Service = styled(({ error, ...props }) => <div {...props} />)`
-	color: #4c4c4c;
-	font-size: 18px;
+export const Service = styled.div`
+	position: relative;
+	color: var(--text-secondary-color);
+	font-size: 20px;
+	font-weight: 600;
+	margin: 8px 0;
+	padding-left: 16px;
 `;
 export const Function = styled.div`
-	color: red;
+	color: var(--status-error-foreground);
 	font-size: 16px;
+	margin: 4px 0;
+	padding-left: 32px;
 `;

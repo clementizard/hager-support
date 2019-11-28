@@ -36,9 +36,11 @@ const UserDrawer = () => {
     <Container>
       <Link href="/">
         <DashboardIcon>
-          <IconButton>
-            <Dashboard />
-          </IconButton>
+          <Tooltip title="Météo des services" placement="right" arrow>
+            <IconButton>
+              <Dashboard />
+            </IconButton>
+          </Tooltip>
         </DashboardIcon>
       </Link>
       <Link href="/user">

@@ -1,9 +1,10 @@
 [{
   "title": "Domovea - Cloud service",
   "description": "Description",
+  "status": "warn",
   "services": [
     {
-      "status": "on",
+      "status": "ok",
       "name": "Prepare my installation",
       "functions": [
         "Create end-user account",
@@ -11,7 +12,7 @@
       ]
     },
     {
-      "status": "off",
+      "status": "ko",
       "name": "Control my installation through apps",
       "functions": [
         "Domovea client app available on Apple store",
@@ -19,7 +20,7 @@
       ]
     },
     {
-      "status": "off",
+      "status": "ko",
       "name": "Manage my installation",
       "functions": [
         "Invite restricted user",
@@ -27,7 +28,7 @@
       ]
     },
     {
-      "status": "on",
+      "status": "ok",
       "name": "Manage my installation2",
       "functions": [
         "Function 1",
@@ -35,4 +36,13 @@
       ]
     }
   ]
+}, {
+  "title": "Flow FR - Cloud service",
+  "status": "ok"
+}, {
+  "title": "Flow DE - Cloud service",
+  "status": "ok"
+}, {
+  "title": "Doorphone - Cloud service",
+  "status": "ok"
 }]

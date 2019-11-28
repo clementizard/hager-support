@@ -2,17 +2,23 @@ import { getNewWeather } from './requests';
 
 const formatNewWeather = (data) => {
 	data.forEach((metric) => {
-		metric.onServices = [];
-		metric.offServices = [];
-		metric.services.forEach((service) => {
-			if (service.status === 'off') metric.offServices.push(service);
-			else metric.onServices.push(service);
-		});
-		metric.status = {
-			ok: !metric.offServices.length,
-			valid: metric.onServices.length,
-			total: metric.onServices.length + metric.offServices.length,
-		};
+		if (metric.services) {
+			metric.onServices = [];
+			metric.warnServices = [];
+			metric.offServices = [];
+			metric.services.forEach((service) => {
+				if (service.status === 'ko') metric.offServices.push(service);
+				else if (service.status === 'warn') metric.warnServices.push(service);
+				else metric.onServices.push(service);
+			});
+			if (!metric.status) {
+				metric.status = {
+					ok: !metric.offServices.length,
+					valid: metric.onServices.length,
+					total: metric.onServices.length + metric.offServices.length,
+				};
+			}
+		}
 	});
 	return data;
 };

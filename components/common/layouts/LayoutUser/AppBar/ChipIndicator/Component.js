@@ -10,7 +10,7 @@ import Card from '../../../../../Dashboard/Card';
 
 const ChipIndicator = ({
   metric: {
-    status: { ok, valid, total },
+    status,
     onServices,
     offServices: services,
     title: label,
@@ -25,6 +25,7 @@ const ChipIndicator = ({
   const handleClose = () => {
     setOpen(false);
   };
+  const ok = status === 'ok';
 
   return ([
     <Container error={!ok} key="container">
@@ -41,10 +42,7 @@ const ChipIndicator = ({
         offServices={services}
         title={label}
         description={description}
-        status={{
-          string: `${valid}/${total}`,
-          ok,
-        }}
+        status={status}
       />
     </Dialog>
   ]);

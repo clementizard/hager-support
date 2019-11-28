@@ -5,29 +5,28 @@ import useWeather from 'Services/Weather/hook';
 import Card from './Card';
 import { Container } from './Styles';
 import { propTypes, defaultProps } from './Props';
+import { PageTitle } from "./Card/Styles";
 
 const Dashboard = () => {
   const { status, data } = useWeather();
 
-  return (
-    <Container>
+  return [
+    <PageTitle key="title">Météo des services</PageTitle>,
+    <Container key="content">
       {status === 'success' && data.map((metric, id) => (
         <Card
           key={id}
           title={metric.title}
           description={metric.description}
-          status={{
-            string: `${metric.status.valid}/${metric.status.total}`,
-            ok: metric.status.ok,
-          }}
+          status={metric.status}
           onServices={metric.onServices}
           offServices={metric.offServices}
         />
       ))}
       {status === 'loading' && <CircularProgress />}
       {status === 'error' && <div>{data}</div>}
-    </Container>
-  );
+    </Container>,
+  ];
 };
 Dashboard.propTypes = propTypes;
 Dashboard.defaultProps = defaultProps;
