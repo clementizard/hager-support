@@ -20,7 +20,7 @@ export const Container = styled(Paper)`
 	font-weight: 500;
 	padding: 16px;
 	overflow: auto;
-	max-height: 215px;
+	max-height: 300px;
 `;
 export const Title = styled(({ margin, ...props }) => <div {...props} />)`
 	position: relative;

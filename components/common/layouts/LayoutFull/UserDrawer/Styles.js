@@ -20,5 +20,10 @@ export const DashboardIcon = styled.div`
   line-height: 72px;
 `;
 export const StyledTooltip = styled.div`
-
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 20px;
+	width: 144px;
+	margin: 8px;
 `;

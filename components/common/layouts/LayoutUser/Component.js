@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import {
@@ -15,16 +15,29 @@ const LayoutUser = ({ children }) => {
   const router = useRouter();
   const { id } = router.query;
   
-  const [open, setOpen] = useState(Boolean(id));
+  const [drawerOpen, setDrawerOpen] = useState(Boolean(id));
+  const handleDrawerOpen = state => () => setDrawerOpen(state);
 
-  const handleOpen = state => () => {
-    setOpen(state);
+  const [detailsOpen, setDetailsOpen] = useState(-1);
+  const handleDetailsOpen = detailsId => () => {
+      if (detailsOpen === detailsId) setDetailsOpen(-1);
+      else setDetailsOpen(detailsId);
   };
+
+  useEffect(() => {
+    setDrawerOpen(Boolean(id));
+  }, [id]);
   
   return (
-    <Container drawerOpen={open}>
-      <AppBar drawerOpen={open} drawerDisabled={!Boolean(id)} onOpen={handleOpen(true)} />
-      <InstallPanel open={open} onClose={handleOpen(false)} />
+    <Container drawerOpen={drawerOpen} detailsOpen={detailsOpen !== -1}>
+      <AppBar
+        drawerOpen={drawerOpen}
+        drawerDisabled={!Boolean(id)}
+        onOpenDrawer={handleDrawerOpen(true)}
+        detailsOpen={detailsOpen}
+        onOpenDetails={handleDetailsOpen}
+      />
+      <InstallPanel open={drawerOpen} onClose={handleDrawerOpen(false)} />
       <Inner>
         {children}
       </Inner>

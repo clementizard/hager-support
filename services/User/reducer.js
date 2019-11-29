@@ -106,6 +106,18 @@ export default (state, {
 					[userId]: error,
 				},
 			};
+		case 'userDelete':
+			console.log('userDelete', userId);
+			newState = Object.assign({}, state);
+			const successDelete = delete newState.data[userId];
+			console.log('NewState: ', newState);
+			if (successDelete) {
+				if (typeof window !== 'undefined') localStorage.setItem('User', JSON.stringify(newState));
+				return newState;
+			} else {
+				console.error(`Cannot remove user ${userId} : the property is an own non-configurable property`);
+				return state;
+			}
 		default: {
 			throw new Error(`Unhandled action type: ${type}`);
 		}

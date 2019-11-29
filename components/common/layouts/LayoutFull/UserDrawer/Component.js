@@ -1,13 +1,15 @@
 import React, { useMemo } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Dashboard from '@material-ui/icons/Dashboard';
 import AccountBox from '@material-ui/icons/AccountBox';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 
-import { useUserState } from 'Services/User';
+import { useUserState, useUserDispatch } from 'Services/User';
 import {
   Container,
   DashboardIcon,
@@ -16,27 +18,38 @@ import {
 import { propTypes, defaultProps } from './Props';
 
 const UserDrawer = () => {
+  const router = useRouter();
+  const { id } = router.query;
   const { data } = useUserState();
+  const dispatch = useUserDispatch();
+
+  const DividerStyles = {
+    margin: '12px 16px 3px',
+  };
 
   const handleClose = userId => (e) => {
     e.preventDefault();
     console.log('Should close :', userId);
+    dispatch({ type: 'userDelete', payload: { userId } });
+    if (id && userId === id) router.push('/user');
   };
   
   const CustomTooltip = ({ userId }) => {
     return (
       <StyledTooltip>
         {userId}
-        <Button onClick={handleClose(userId)}>Fermer l'utilisateur</Button>
+        <Divider variant="middle" style={DividerStyles}/>
+        <Button variant="contained" onClick={handleClose(userId)}>Close User</Button>
       </StyledTooltip>
     )
   };
+  console.log(router);
   
-  return useMemo(() => (
+  return (
     <Container>
       <Link href="/">
         <DashboardIcon>
-          <Tooltip title="Météo des services" placement="right" arrow>
+          <Tooltip title="Weather services" placement="right">
             <IconButton>
               <Dashboard />
             </IconButton>
@@ -45,7 +58,7 @@ const UserDrawer = () => {
       </Link>
       <Link href="/user">
         <DashboardIcon>
-          <Tooltip title="Add user" placement="right" arrow>
+          <Tooltip title="Add user" placement="right">
             <IconButton>
               <PersonAdd />
             </IconButton>
@@ -55,7 +68,13 @@ const UserDrawer = () => {
       {Object.keys(data).map((userId) => (
         <Link href={`/user/${userId}`} key={userId}>
           <DashboardIcon>
-            <Tooltip title={<CustomTooltip userId={userId} />} placement="right" arrow interactive>
+            <Tooltip
+              title={<CustomTooltip userId={userId} />}
+              placement="right"
+              interactive
+              disableTouchListener
+              onClick={(e) => e.preventDefault()}
+            >
               <IconButton>
                 <AccountBox />
               </IconButton>
@@ -64,7 +83,7 @@ const UserDrawer = () => {
         </Link>
       ))}
     </Container>
-  ), [data]);
+  );
 };
 UserDrawer.propTypes = propTypes;
 UserDrawer.defaultProps = defaultProps;

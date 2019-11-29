@@ -11,7 +11,7 @@ const Dashboard = () => {
   const { status, data } = useWeather();
 
   return [
-    <PageTitle key="title">Météo des services</PageTitle>,
+    <PageTitle key="title">Weather services</PageTitle>,
     <Container key="content">
       {status === 'success' && data.map((metric, id) => (
         <Card

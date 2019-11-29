@@ -17,6 +17,7 @@ export const Card = ({
   status,
   offServices,
   onServices,
+  noSmall,
 }) => {
   const hasServices = Boolean(offServices.length || onServices.length);
   const [extended, setExtended] = useState(hasServices);
@@ -24,7 +25,7 @@ export const Card = ({
 
   return (
     <Container>
-      {hasServices &&
+      {(hasServices && !noSmall) &&
         <ExtendBtn rotate={extended}>
           <IconButton onClick={handleExtend}>
             <Arrow />

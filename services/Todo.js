@@ -1,50 +1,23 @@
 /*
-/users/{userid}/installations
-List of the Object "installation"
+Handle bad user id
+handle user UUID and Email
 
-installation-id
-installation name
-appcode (=installation type flow, nmp, dts, etc …)
-external-id=UID IOT GW or Bridge
-owner email
-installer email
-localisation-postal-code
-localisation-city
-localisation-country
-Installation-date
-Installation-heartbit
-cloud-heartbit
+FULL user component: {
+	- carte du user
+	- Carte des erreurs (Fonction pour les recup? Dans le state? Live?)
+	- Tableau installations (Pagination, nb / page, recherche)
+	- Tableau devices (dynamique)
+	- carte details device (dynamique)
+	- Anchors + Selecteurs (aka scrolls)
 
+	- Fonction de recherche
+}
+Tooltip : {
+	UPDATE
+	Known bug: Cancel click ?
+}
 
-/users/{userid}/installations/[installationId}/devices
-list of the object "devices"
-
-device-id
-device-type
-device-name
-serial-number
-reference-number
-software-versions
-installed-date
-Last-installation-modification-date
-installed-date-software-version
-last-data-exchanged-date
-current-error-status
-
-[
-  '{{repeat(4)}}',
-  {
-    id: '{{objectId()}}',
-    name: '{{firstName()}}',
-    type: '{{surname()}}',
-    serial: '{{guid()}}',
-    reference: '{{guid()}}',
-    softwareVersion: '{{floating(1, 20, 2)}}',
-    date: '{{date(new Date())}}',
-    lastEdit: '{{date(new Date())}}',
-    lastDataExchanged: '{{date(new Date())}}',
-    status: '{{random("ok", "ko", "warn")}}'
-  }
-]
+MOCK USER
+MOCK Update
 
 */
