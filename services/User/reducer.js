@@ -1,8 +1,11 @@
 export default (state, {
 	type,
 	payload: {
-		installId,
 		userId,
+		installId,
+		deviceId,
+		item,
+		value,
 		error,
 		data,
 	}
@@ -22,6 +25,7 @@ export default (state, {
 			};
 		case 'deviceUpdateFail':
 			return {
+				...state,
 				status: {
 					...state.status,
 					installations: {
@@ -44,6 +48,7 @@ export default (state, {
 			};
 		case 'deviceUpdateSuccess':
 			return {
+				...state,
 				status: {
 					...state.status,
 					installations: {
@@ -77,6 +82,7 @@ export default (state, {
 			};
 		case 'userUpdateSuccess':
 			newState = {
+				...state,
 				status: {
 					...state.status,
 					users: {
@@ -94,6 +100,7 @@ export default (state, {
 			return newState;
 		case 'userUpdateFail':
 			return {
+				...state,
 				status: {
 					...state.status,
 					users: {
@@ -107,17 +114,46 @@ export default (state, {
 				},
 			};
 		case 'userDelete':
-			console.log('userDelete', userId);
 			newState = Object.assign({}, state);
 			const successDelete = delete newState.data[userId];
-			console.log('NewState: ', newState);
 			if (successDelete) {
 				if (typeof window !== 'undefined') localStorage.setItem('User', JSON.stringify(newState));
 				return newState;
-			} else {
-				console.error(`Cannot remove user ${userId} : the property is an own non-configurable property`);
-				return state;
-			}
+			} else return state;
+		case 'userSelect':
+			return {
+				...state,
+				selected: {
+					...state.selected,
+					[userId]: {
+						...state.selected[userId],
+						[item]: value,
+					},
+				},
+			};
+		case 'userDeselectInstall':
+			return {
+				...state,
+				selected: {
+					...state.selected,
+					[userId]: {
+						...state.selected[userId],
+						install: null,
+						device: null,
+					},
+				},
+			};
+		case 'updateSearch':
+			return {
+				...state,
+				selected: {
+					...state.selected,
+					[userId]: {
+						...state.selected[userId],
+						search: value,
+					},
+				},
+			};
 		default: {
 			throw new Error(`Unhandled action type: ${type}`);
 		}

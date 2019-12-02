@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -10,13 +10,13 @@ import Collapse from '@material-ui/core/Collapse';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import Search from '@material-ui/icons/Search';
-import TextField from '@material-ui/core/TextField';
+// import Search from '@material-ui/icons/Search';
+// import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import useList from 'react-use/lib/useList';
 
-import { useUserState } from 'Services/User';
+import { useUserState, useUserDispatch } from 'Services/User';
 import {
   Container,
   Drawer,
@@ -28,15 +28,38 @@ const InstallPanel = ({
   onClose,
 }) => {
   const router = useRouter();
-  const { id } = router.query;
-  const { data } = useUserState();
+  const { id: userId } = router.query;
+  const { data, selected } = useUserState();
+  const dispatch = useUserDispatch();
+  const [listOpen, { updateAt, clear }] = useList([]);
+
+  const selectedInstall = selected[userId] && selected[userId].install;
+  useEffect(() => {
+    if (selectedInstall !== null && data[userId]) {
+      if (listOpen.length) clear();
+      const installIndex = data[userId].installations.findIndex(el => el.id === selectedInstall);
+      updateAt(installIndex, !listOpen[installIndex]);
+    } else clear();
+  }, [selectedInstall]);
   
-  const [listOpen, { updateAt }] = useList([]);
-  const handleOpen = id => () => {
-    updateAt(id, !listOpen[id]);
+  // No data yet
+  if (!userId || !data[userId]) return <Container />;
+
+  const handleSelectInstall = installId => () => {
+    if (selected[userId] && selected[userId].install === installId) { // Already selected
+      dispatch({ type: 'userDeselectInstall', payload: { userId } });
+    } else { // New selected
+      dispatch({
+        type: 'userSelect',
+        payload: {
+          userId,
+          value: installId,
+          item: 'install',
+        },
+      });
+    }
   };
-  
-  if (!id || !data[id]) return <Container />;
+
   return (
     <Container>
       <Drawer open={open}>
@@ -56,24 +79,24 @@ const InstallPanel = ({
         </div>
         <Divider />
         <List disablePadding>
-          <ListItem style={{ padding: 24 }}>
-            <TextField
-              variant="outlined"
-              label="Search"
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Search />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </ListItem>
-          <Divider />
-          {data[id].installations.map((install, installId) => (
+          {/*<ListItem style={{ padding: 24 }}>*/}
+          {/*  <TextField*/}
+          {/*    variant="outlined"*/}
+          {/*    label="Search"*/}
+          {/*    fullWidth*/}
+          {/*    InputProps={{*/}
+          {/*      startAdornment: (*/}
+          {/*        <InputAdornment position="start">*/}
+          {/*          <Search />*/}
+          {/*        </InputAdornment>*/}
+          {/*      ),*/}
+          {/*    }}*/}
+          {/*  />*/}
+          {/*</ListItem>*/}
+          {/*<Divider />*/}
+          {data[userId].installations.map((install, installId) => (
             <Fragment key={install.id}>
-              <ListItem button onClick={handleOpen(installId)}>
+              <ListItem button onClick={handleSelectInstall(install.id)}>
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>

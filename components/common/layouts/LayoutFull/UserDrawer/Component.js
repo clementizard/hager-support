@@ -43,7 +43,6 @@ const UserDrawer = () => {
       </StyledTooltip>
     )
   };
-  console.log(router);
   
   return (
     <Container>

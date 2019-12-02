@@ -1,4 +1,5 @@
 import React from 'react';
+import MaterialTable from 'material-table';
 
 import {
   Container,
@@ -15,12 +16,10 @@ const Full = ({
     id,
     installations,
   },
-  selectedInstall,
-  selectedDevice,
 }) => {
+  
   // const devices = installations[selectedInstall].devices;
-  
-  
+
   return (
     <Container>
       <User>{id}</User>
