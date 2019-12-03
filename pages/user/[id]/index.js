@@ -1,9 +1,9 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router'
 import CircularProgress from '@material-ui/core/CircularProgress';
-import MaterialTable, { MTableToolbar } from 'material-table';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import Assessment from '@material-ui/icons/Assessment';
+import AssessmentOutlined from '@material-ui/icons/AssessmentOutlined';
+import MaterialTable from 'material-table';
 
 import TableIcons from 'Tools/tableIcons';
 import { getLayout } from 'Layouts/LayoutUser';
@@ -16,6 +16,13 @@ import {
 	Installs,
 	User,
 	Title,
+	DetailsContainer,
+	DetailsContent,
+	DetailsTitle,
+	UserInfos,
+	UserInfoTitle,
+	UserInfo,
+	DetailsInner,
 } from './Styles';
 import { getEquipmentsInError } from './Tools';
 
@@ -34,10 +41,16 @@ const Index = () => {
 		}
 	}, [id]);
 	
-	if (!data[id] || users[id] === 'loading') return <CircularProgress />;
+	if (!data[id] || users[id] === 'loading') return (<CircularProgress />);
 	if (users[id] === 'error') return <>error: {data[id]}</>;
 
-	const { installations, id: userId } = data[id];
+	const {
+		installations,
+		id: userId,
+		firstname,
+		lastname,
+		email,
+	} = data[id];
 	const handleSelectInstall = installId => () => {
 		if (selected[userId] && selected[userId].install === installId) { // Already selected
 			dispatch({ type: 'userDeselectInstall', payload: { userId } });
@@ -56,26 +69,30 @@ const Index = () => {
 	const selectedInstallDevices = selectedInstall && selectedInstall.devices;
 	const failingEquipments = getEquipmentsInError(installations);
 	
-	// const handleSearchChange = (value) => {
-	// 	dispatch({ type: 'updateSearch', payload: { userId, value } });
-	// };
+	console.log('failingEquipments', failingEquipments);
 	
-	console.log(failingEquipments);
-
 	return (
 		<Container>
 			<User>
 				<Title>User</Title>
-				
-				{id}
+				<UserInfos>
+					<UserInfoTitle>Firstname: </UserInfoTitle>
+					<UserInfo>{firstname}</UserInfo>
+					<UserInfoTitle>Lastname: </UserInfoTitle>
+					<UserInfo>{lastname}</UserInfo>
+					<UserInfoTitle>Email: </UserInfoTitle>
+					<UserInfo>{email}</UserInfo>
+					<UserInfoTitle>Id: </UserInfoTitle>
+					<UserInfo>{userId}</UserInfo>
+				</UserInfos>
 			</User>
 			<Errors>
 				<MaterialTable
 					icons={TableIcons}
 					title="Errors"
 					columns={[
-						{ title: 'Id', field: 'id' },
-						{ title: 'App Code / Type', field: 'type', cellStyle: { minWidth: 115 } },
+						{ title: 'Type', field: 'type', cellStyle: { minWidth: 115 } },
+						{ title: 'Name', field: 'name', cellStyle: { minWidth: 115 } },
 					]}
 					data={failingEquipments}
 					options={{
@@ -91,7 +108,6 @@ const Index = () => {
 					icons={TableIcons}
 					title="Installations"
 					columns={[
-						{ title: 'Id', field: 'id' },
 						{ title: 'Name', field: 'name' },
 						{ title: 'App Code', field: 'appCode', cellStyle: { minWidth: 115 } },
 						{ title: 'Id External', field: 'idExternal', cellStyle: { minWidth: 300 } },
@@ -100,16 +116,12 @@ const Index = () => {
 						{ title: 'Postal Code', field: 'postalCode', type: 'numeric', cellStyle: { minWidth: 115 } },
 						{ title: 'City', field: 'city' },
 						{ title: 'Country', field: 'country', cellStyle: { minWidth: 160 } },
-						{ title: 'Date', field: 'date', type: 'date', cellStyle: { minWidth: 480 } },
+						{ title: 'Installed Date', field: 'date', type: 'date', cellStyle: { minWidth: 480 } },
 						{ title: 'Heartbit', field: 'heartbit', type: 'date', cellStyle: { minWidth: 480 } },
-						{ title: 'Cloud Heartbit', field: 'heartbitCloud', type: 'date', cellStyle: { minWidth: 480 } },
 					]}
 					data={installations}
 					onRowClick={(event, rowData) => handleSelectInstall(rowData.id)()}
 					options={{
-						cellStyle: rowData => ({
-							fontWeight: (selectedInstall && selectedInstall.id === rowData.id) ? 600 : 500,
-						}),
 						rowStyle: rowData => {
 							let backgroundColor = selectedInstall && selectedInstall.id === rowData.id ? '#EEE' : '#FFF';
 							switch (rowData.status) {
@@ -138,17 +150,50 @@ const Index = () => {
 						{ title: 'Serial Number', field: 'serial', cellStyle: { minWidth: 300 } },
 						{ title: 'Reference', field: 'reference', cellStyle: { minWidth: 280 } },
 						{ title: 'Software Version', field: 'softwareVersion', cellStyle: { minWidth: 150 } },
-						{ title: 'Date', field: 'date', type: 'date', cellStyle: { minWidth: 480 } },
+						{ title: 'Installed Date', field: 'date', type: 'date', cellStyle: { minWidth: 480 } },
 						{ title: 'Last Edit', field: 'lastEdit', type: 'date', cellStyle: { minWidth: 480 } },
 						{ title: 'Last Data Exchanged', field: 'lastDataExchanged', type: 'date', cellStyle: { minWidth: 480 } },
 					]}
-					detailPanel={rowData => (
-						<>
-							{rowData.status}
-						</>
-					)}
+					detailPanel={[
+						(rowData) => ({
+							disabled: !rowData.details || !Object.keys(rowData.details).length,
+							render: () => (
+								<DetailsContainer>
+									<DetailsInner>
+										{rowData.details && Object.keys(rowData.details).map(key => (
+											<div key={key}>
+												<DetailsTitle>{key}:</DetailsTitle>
+												<DetailsContent>
+													{rowData.details[key]}
+												</DetailsContent>
+											</div>
+										))}
+									</DetailsInner>
+								</DetailsContainer>
+							),
+						}),
+						(rowData) => ({
+							disabled: !rowData.insights || !Object.keys(rowData.insights).length,
+							icon: Assessment,
+							openIcon: AssessmentOutlined,
+							render: () => (
+								<DetailsContainer>
+									<DetailsInner>
+										{rowData.insights && Object.keys(rowData.insights).map(key => (
+											<div key={key}>
+												<DetailsTitle>{key}:</DetailsTitle>
+												<DetailsContent>
+													{rowData.insights[key]}
+												</DetailsContent>
+											</div>
+										))}
+									</DetailsInner>
+								</DetailsContainer>
+							)
+						}),
+					]}
 					data={selectedInstallDevices || undefined}
-					onRowClick={(event, rowData, togglePanel) => togglePanel()}
+					onRowClick={(event, rowData, togglePanel) => (rowData.details && Object.keys(rowData.details).length) && togglePanel()}
 					options={{
 						rowStyle: rowData => {
 							let backgroundColor = '#FFF';
@@ -160,11 +205,12 @@ const Index = () => {
 									backgroundColor = 'var(--status-warning-background-alternative)';
 									break;
 							}
-							return ({ backgroundColor });
+							return ({
+								backgroundColor,
+								cursor: rowData.details && Object.keys(rowData.details).length ? 'pointer' : 'default !important',
+							});
 						},
-						// searchText: selected[userId] && selected[userId].search,
 					}}
-					// onSearchChange={handleSearchChange}
 				/>
 			</Devices>
 			<Details />

@@ -48,7 +48,7 @@ const AppBar = ({
       </Bar>
       <DetailsContainer>
         {status === 'success' && data.map((metric, id) => (
-          <DetailsInner open={detailsOpen === id}>
+          <DetailsInner open={detailsOpen === id} key={id}>
             <Card
               onServices={metric.onServices}
               offServices={metric.offServices}

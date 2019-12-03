@@ -1,14 +1,26 @@
 [
   {
-    "id": "user1"
+    "id": "09741964-73a3-472b-99a9-e53b73fe9174",
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "johndoe@gmail.com"
   },
   {
-    "id": "user2"
+    "id": "user2",
+    "firstname": "Rosalind",
+    "lastname": "Franklin",
+    "email": "rosalindfranklin@gmail.com"
   },
   {
-    "id": "user3"
+    "id": "user3",
+    "firstname": "Simone",
+    "lastname": "De Beauvoir",
+    "email": "simonedebeauvoir@gmail.com"
   },
   {
-    "id": "user4"
+    "id": "user4",
+    "firstname": "Marie",
+    "lastname": "Curie",
+    "email": "mariecurie@gmail.com"
   }
 ]

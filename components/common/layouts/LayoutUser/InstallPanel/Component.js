@@ -79,35 +79,20 @@ const InstallPanel = ({
         </div>
         <Divider />
         <List disablePadding>
-          {/*<ListItem style={{ padding: 24 }}>*/}
-          {/*  <TextField*/}
-          {/*    variant="outlined"*/}
-          {/*    label="Search"*/}
-          {/*    fullWidth*/}
-          {/*    InputProps={{*/}
-          {/*      startAdornment: (*/}
-          {/*        <InputAdornment position="start">*/}
-          {/*          <Search />*/}
-          {/*        </InputAdornment>*/}
-          {/*      ),*/}
-          {/*    }}*/}
-          {/*  />*/}
-          {/*</ListItem>*/}
-          {/*<Divider />*/}
-          {data[userId].installations.map((install, installId) => (
+          {data[userId].installations && data[userId].installations.map((install, installId) => (
             <Fragment key={install.id}>
               <ListItem button onClick={handleSelectInstall(install.id)}>
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary={install.id} />
+                <ListItemText primary={`${install.appCode} ${install.name}`} />
                 {listOpen[installId] ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
               <Collapse in={listOpen[installId]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding style={{ paddingLeft: 32 }}>
                   {install.devices.map((device) => (
                     <ListItem button key={device.id}>
-                      <ListItemText primary={device.id} />
+                      <ListItemText primary={device.type} />
                     </ListItem>
                   ))}
                 </List>

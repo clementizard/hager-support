@@ -6,10 +6,7 @@ export const propTypes = {
 	 */
 	title: PropTypes.string.isRequired,
 	description: PropTypes.string,
-	status: PropTypes.shape({
-		string: PropTypes.string.isRequired,
-		ok: PropTypes.bool.isRequired,
-	}),
+	status: PropTypes.string.isRequired,
 	offServices: PropTypes.array,
 	onServices: PropTypes.array,
 };

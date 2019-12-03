@@ -34,15 +34,14 @@ const UserDrawer = () => {
     if (id && userId === id) router.push('/user');
   };
   
-  const CustomTooltip = ({ userId }) => {
-    return (
-      <StyledTooltip>
-        {userId}
-        <Divider variant="middle" style={DividerStyles}/>
-        <Button variant="contained" onClick={handleClose(userId)}>Close User</Button>
-      </StyledTooltip>
-    )
-  };
+  const CustomTooltip = ({ title, userId }) => (
+    <StyledTooltip>
+      {title}
+      <Divider variant="middle" style={DividerStyles}/>
+      <Button variant="contained" onClick={handleClose(userId)}>Close User</Button>
+    </StyledTooltip>
+  );
+  const user = data[id];
   
   return (
     <Container>
@@ -64,11 +63,11 @@ const UserDrawer = () => {
           </Tooltip>
         </DashboardIcon>
       </Link>
-      {Object.keys(data).map((userId) => (
+      {Object.keys(data).map(userId => (
         <Link href={`/user/${userId}`} key={userId}>
           <DashboardIcon>
             <Tooltip
-              title={<CustomTooltip userId={userId} />}
+              title={<CustomTooltip userId={userId} title={`${data[userId].firstname} ${data[userId].lastname}`} />}
               placement="right"
               interactive
               disableTouchListener
