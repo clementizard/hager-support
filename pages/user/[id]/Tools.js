@@ -24,14 +24,3 @@ export const getEquipmentsInError = (installations) => {
 	
 	return out;
 };
-
-
-/*
-Parcours User:
-
-Ouvrir le lien a partir du crm => Creer un html avec le lien vers l'app
-Mettre les cartes des services toujours dans le meme ordre
-Mettee dans la carter user Familly name, middle name first name Email Phone address(street postal code locality)
-
-
- */

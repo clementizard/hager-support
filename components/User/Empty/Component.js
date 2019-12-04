@@ -18,31 +18,44 @@ import { propTypes, defaultProps } from './Props';
 const Empty = () => {
   const router = useRouter();
   const [userId, setUserId] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const dispatch = useUserDispatch();
   const { status, data } = useUserState();
   
   console.log('Status: ', status.users[userId]);
 
   const loading = status.users[userId] === 'loading';
-  const handleChange = ({ target: { value }}) => {
+  const handleUUIDChange = ({ target: { value }}) => {
     setUserId(value);
   };
+  const handleEmailChange = ({ target: { value }}) => {
+    setUserEmail(value);
+  };
   const handleClick = async () => {
-    await getUser(dispatch, userId);
+    if (userId !== '') await getUser(dispatch, userId);
+    // else if (userEmail !== '') await getUserByEmail(dispatch, userEmail);
   };
   useEffect(() => {
-    if (status.users[userId] === 'success' && data[userId]) router.push(`/user/${userId}`);
+    if (data[userId] && Object.keys(data[userId]).length) router.push(`/user/${userId}`);
   }, [loading]);
   
   return (
     <Container>
       <TextField
-        label="User ID"
+        label="UUID"
         margin="normal"
         variant="outlined"
         autoFocus
         fullWidth
-        onChange={handleChange}
+        onChange={handleUUIDChange}
+        disabled={loading}
+      />
+      <TextField
+        label="Email"
+        margin="normal"
+        variant="outlined"
+        fullWidth
+        onChange={handleEmailChange}
         disabled={loading}
       />
       <Button
@@ -56,7 +69,17 @@ const Empty = () => {
         <Search />
         Search
       </Button>
-      {loading && <CircularProgress/>}
+      {loading && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            margin: '24px',
+          }}
+        >
+          <CircularProgress/>
+        </div>
+      )}
     </Container>
   );
 };

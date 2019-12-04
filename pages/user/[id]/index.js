@@ -108,16 +108,16 @@ const Index = () => {
 					icons={TableIcons}
 					title="Installations"
 					columns={[
-						{ title: 'Name', field: 'name' },
+						{ title: 'Name', field: 'name', cellStyle: { minWidth: 115 } },
 						{ title: 'App Code', field: 'appCode', cellStyle: { minWidth: 115 } },
 						{ title: 'Id External', field: 'idExternal', cellStyle: { minWidth: 300 } },
 						{ title: 'Owner Email', field: 'emailOwner', cellStyle: { minWidth: 265 } },
 						{ title: 'Installer Email', field: 'emailInstaller', cellStyle: { minWidth: 265 } },
 						{ title: 'Postal Code', field: 'postalCode', type: 'numeric', cellStyle: { minWidth: 115 } },
-						{ title: 'City', field: 'city' },
+						{ title: 'City', field: 'city', cellStyle: { minWidth: 150 } },
 						{ title: 'Country', field: 'country', cellStyle: { minWidth: 160 } },
-						{ title: 'Installed Date', field: 'date', type: 'date', cellStyle: { minWidth: 480 } },
-						{ title: 'Heartbit', field: 'heartbit', type: 'date', cellStyle: { minWidth: 480 } },
+						{ title: 'Installed Date', field: 'date', type: 'date', cellStyle: { minWidth: 120 } },
+						{ title: 'Heartbit', field: 'heartbit', type: 'date', cellStyle: { minWidth: 175 } },
 					]}
 					data={installations}
 					onRowClick={(event, rowData) => handleSelectInstall(rowData.id)()}
@@ -144,15 +144,13 @@ const Index = () => {
 					icons={TableIcons}
 					title="Devices"
 					columns={[
-						{ title: 'Id', field: 'id' },
-						{ title: 'Name', field: 'name' },
 						{ title: 'Type', field: 'type' },
 						{ title: 'Serial Number', field: 'serial', cellStyle: { minWidth: 300 } },
-						{ title: 'Reference', field: 'reference', cellStyle: { minWidth: 280 } },
+						{ title: 'Reference', field: 'reference', cellStyle: { minWidth: 110 } },
 						{ title: 'Software Version', field: 'softwareVersion', cellStyle: { minWidth: 150 } },
-						{ title: 'Installed Date', field: 'date', type: 'date', cellStyle: { minWidth: 480 } },
-						{ title: 'Last Edit', field: 'lastEdit', type: 'date', cellStyle: { minWidth: 480 } },
-						{ title: 'Last Data Exchanged', field: 'lastDataExchanged', type: 'date', cellStyle: { minWidth: 480 } },
+						{ title: 'Installed Date', field: 'date', type: 'date', cellStyle: { minWidth: 120 } },
+						{ title: 'Last Edit', field: 'lastEdit', type: 'date', cellStyle: { minWidth: 175 } },
+						{ title: 'Last Data Exchanged', field: 'lastDataExchanged', type: 'date', cellStyle: { minWidth: 175 } },
 					]}
 					detailPanel={[
 						(rowData) => ({

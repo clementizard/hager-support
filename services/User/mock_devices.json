@@ -186,6 +186,9 @@
       "Manufacturer Node Identification":"",
       "Manufacturer Label": "",
       "Manufacturer Description":""
+    },
+    "insights": {
+      "lastSession": "ok"
     }
   },
   {
@@ -200,37 +203,73 @@
     "lastEdit": "",
     "lastDataExchanged": "1575457200",
     "status": "ok",
-    "details": null
+    "details": {
+      "board firmware version": "1.0.1",
+      "board MAC address (Station)": "00:0b:45:9e:80:90",
+      "SSID": "8774ujyd996wddc001pm"
+    },
+    "insights": {
+      "lastHeartbit": "04/12/2019 09:48"
+    }
   },
   {
     "id": "",
     "installId": "install71",
     "name": "",
     "type": "Grid",
-    "serial": "WCRTRV5D3VWXADYSRTA38E52",
-    "reference": "MRP504",
+    "serial": "OIAWDUNGWLAKJHEDFSRTA38E52",
+    "reference": "M3PRO",
     "softwareVersion": "1.0.2",
     "date": "1524418200",
     "lastEdit": "",
     "lastDataExchanged": "1575457200",
     "status": "ok",
-    "details": null
+    "details": {
+      "Vendor Name": "Herholdt",
+      "Product Code": "M3PRO",
+      "SW Version": "1.0.2",
+      "Model Name": "M3PRO 1-5 Modbus",
+      "Product Name": "",
+      "HW Version": "15.8.90",
+      "Serial Number": "WCRTRV5D3VWXADYSRTA38E52",
+      "Site Code": "3548231847877",
+      "Production Date (Day)": "180",
+      "Production Date (Year)": "2018",
+      "Phase Type": "tri phased",
+      "Main Protection": "28",
+      "Mod Bus Address": "122"
+    },
+    "insights": {
+      "Last load or unload": "04/12/2019 10:00"
+    }
   },
   {
     "id": "",
     "installId": "install71",
     "name": "",
     "type": "Storage",
-    "serial": "WCRTRV5D3VWXADYSRTA38E52",
+    "serial": "UREJJTNSSVWXADYSRTA38E52",
     "reference": "MRP504",
-    "softwareVersion": "1.0.2",
+    "softwareVersion": "1.0.9",
     "date": "1524418200",
     "lastEdit": "",
     "lastDataExchanged": "1575457200",
     "status": "ok",
-    "details": null,
+    "details": {
+      "Vendor Name": "Herholdt",
+      "Product Code": "M3PRO",
+      "SW Version": "1.0.9",
+      "Model Name": "M3PRO 1-5 Modbus",
+      "Product Name": "",
+      "HW Version": "15.8.90",
+      "Serial Number": "UREJJTNSSVWXADYSRTA38E52",
+      "Site Code": "3548231847877",
+      "Production Date (Day)": "180",
+      "Production Date (Year)": "2018",
+      "Mod Bus Address": "128"
+    },
     "insights": {
-      "lastCharge": "1575457200"
+      "Last load or unload": "04/12/2019 10:00"
     }
   },
   {
@@ -238,14 +277,28 @@
     "installId": "install71",
     "name": "",
     "type": "PV",
-    "serial": "WCRTRV5D3VWXADYSRTA38E52",
+    "serial": "OWURNEIOSWXADYSRTA38E52",
     "reference": "MRP504",
     "softwareVersion": "1.0.2",
     "date": "1524418200",
     "lastEdit": "",
     "lastDataExchanged": "1575457200",
     "status": "ko",
-    "details": null,
+    "details": {
+      "Vendor Name": "Herholdt",
+      "Product Code": "M3PRO",
+      "Max Power": "18600",
+      "SW Version": "1.0.2",
+      "Model Name": "M3PRO 1-5 Modbus",
+      "Product Name": "",
+      "HW Version": "15.8.90",
+      "Serial Number": "OWURNEIOSWXADYSRTA38E52",
+      "Site Code": "3548231847877",
+      "Production Date (Day)": "180",
+      "Production Date (Year)": "2018",
+      "Phase Type": "tri phased",
+      "Mod Bus Address": "125"
+    },
     "insights": {
       "lastProduction": "More than 24h since last production: 03/12/2019 09:40"
     }
@@ -255,16 +308,16 @@
     "installId": "install71",
     "name": "",
     "type": "EMC",
-    "serial": "WCRTRV5D3VWXADYSRTA38E52",
-    "reference": "MRP504",
-    "softwareVersion": "1.0.2",
+    "serial": "POERTJMDUFWXADYSRTA38E52",
+    "reference": "XEM461",
+    "softwareVersion": "1.0.3.90978",
     "date": "1524418200",
     "lastEdit": "",
     "lastDataExchanged": "1575457200",
     "status": "ok",
     "details": null,
     "insights": {
-      "lastHeatbit": "1575457200"
+      "lastHeatbit": "04/12/2019 09:45"
     }
   },
   {
