@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -10,8 +9,6 @@ import Collapse from '@material-ui/core/Collapse';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-// import Search from '@material-ui/icons/Search';
-// import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import useList from 'react-use/lib/useList';
@@ -41,7 +38,7 @@ const InstallPanel = ({
       updateAt(installIndex, !listOpen[installIndex]);
     } else clear();
   }, [selectedInstall]);
-  
+
   // No data yet
   if (!userId || !data[userId]) return <Container />;
 
