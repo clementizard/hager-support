@@ -195,27 +195,6 @@
     "id": "",
     "installId": "install71",
     "name": "",
-    "type": "Wifi",
-    "serial": "WCRTRV5D3VWXADYSRTA38E52",
-    "reference": "YUI775",
-    "softwareVersion": "1.0.2",
-    "date": "1524418200",
-    "lastEdit": "",
-    "lastDataExchanged": "1575457200",
-    "status": "ok",
-    "details": {
-      "board firmware version": "1.0.1",
-      "board MAC address (Station)": "00:0b:45:9e:80:90",
-      "SSID": "8774ujyd996wddc001pm"
-    },
-    "insights": {
-      "lastHeartbit": "04/12/2019 09:48"
-    }
-  },
-  {
-    "id": "",
-    "installId": "install71",
-    "name": "",
     "type": "Grid",
     "serial": "OIAWDUNGWLAKJHEDFSRTA38E52",
     "reference": "M3PRO",

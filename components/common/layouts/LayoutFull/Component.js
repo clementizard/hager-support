@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 
-import useWindowSize from 'Tools/hooks/windowSize';
 import { WeatherProvider } from 'Services/Weather';
 import { UserProvider } from 'Services/User';
 import UserDrawer from './UserDrawer';

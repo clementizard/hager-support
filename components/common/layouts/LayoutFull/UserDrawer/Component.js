@@ -41,7 +41,6 @@ const UserDrawer = () => {
       <Button variant="contained" onClick={handleClose(userId)}>Close User</Button>
     </StyledTooltip>
   );
-  const user = data[id];
   
   return (
     <Container>
