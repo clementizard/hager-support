@@ -1,32 +1,25 @@
-
 # Support Dashboard  
-  
-  
 ## Summary  
-  
+
 - Installation
-- Aliases  
+- Aliases
 - Routing  
 - Layouts  
 - Services  
 - Templates  
+- Norm
 - Storybook
 - Tests
 - Deployment  
-  
+
 ## Installation  
 To install and run the application in development mode, clone the repository and run:
 
-```npm install```
- or
- ```yarn install```
+```npm install``` *or* ```yarn install```
 
 Then:
 
-```npm run dev```
- or
- ```yarn run dev```
-
+```npm run dev``` *or* ```yarn run dev```
 
 ## Aliases  
   
@@ -39,7 +32,7 @@ Layouts: /components/common/layouts
 Services: /services  
 Public: /public  
 Styles: /styles  
-Tools: /tools
+Tools: /tools  
 Hooks: /tools/hooks  
 ```  
   
@@ -178,6 +171,44 @@ mock.json
 - ```mock.json```: Mock state. Used for tests.
 </details>
 
+## Norm
+
+**Folder Naming**
+Main folders and pages folders are written in minuscules. Components and others are written in [Upper Camel Case](https://wiki.c2.com/?UpperCamelCase).
+
+**Files structure**
+- ```Component.js```
+1. External imports
+2. Internal imports
+    1. Internal components
+    2. Styles
+    3. Props
+    4. Tools
+    5. Loader
+3. Definition
+    1. Class
+    2. Static variables
+5. Export
+
+External and internal imports are ordered by usage in the component definition, separated by a blank line.
+Each import follow the eslint rule "object-curly-newline". In general Eslint rules must not be edited.
+When importing components only import the folder, the index will take care of the rest.
+
+- ```Styles.js```  Exports a list of components ordered by use in the definition of the class. Can also export a "styles" object used by the class.
+- ```Props.js``` 
+- ```Tools.js``` 
+- ```Loader.js``` 
+- ```index.js``` 
+
 ## Storybook
+
+[Storybook](https://storybook.js.org/) is used to describe components. This tool is configured to allow props modifications in order to test components.
+To try it out, run: ```npm run docs``` *or* ```yarn run docs```
+
 ## Tests
+
+[Cypress](https://www.cypress.io/) is used to test unitary components and end to end. Run tests with: ```npm run test``` *or* ```yarn run test```
+
 ## Deployment
+
+**WIP**
