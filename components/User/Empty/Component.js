@@ -42,7 +42,7 @@ const Empty = () => {
   return (
     <Container>
       <TextField
-        label="UUID"
+        label="myHager Id"
         margin="normal"
         variant="outlined"
         autoFocus

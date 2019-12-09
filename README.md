@@ -207,7 +207,9 @@ To try it out, run: ```npm run docs``` *or* ```yarn run docs```
 
 ## Tests
 
-[Cypress](https://www.cypress.io/) is used to test unitary components and end to end. Run tests with: ```npm run test``` *or* ```yarn run test```
+[Cypress](https://www.cypress.io/) is used to test unitary components and end to end.
+Run tests with: ```npm run test``` *or* ```yarn run test```
+Run Dev tests with: ```npm run test:dev``` *or* ```yarn run test:dev```
 
 ## Deployment
 

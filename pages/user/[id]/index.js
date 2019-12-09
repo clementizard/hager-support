@@ -41,7 +41,7 @@ const Index = () => {
 		}
 	}, [id]);
 	
-	if (!data[id] || users[id] === 'loading') return (<CircularProgress />);
+	if (!data[id] || users[id] === 'loading') return (null);
 	if (users[id] === 'error') return <>error: {data[id]}</>;
 
 	const {
@@ -82,7 +82,7 @@ const Index = () => {
 					<UserInfo>{lastname}</UserInfo>
 					<UserInfoTitle>Email: </UserInfoTitle>
 					<UserInfo>{email}</UserInfo>
-					<UserInfoTitle>Id: </UserInfoTitle>
+					<UserInfoTitle>myHager Id: </UserInfoTitle>
 					<UserInfo>{userId}</UserInfo>
 				</UserInfos>
 			</User>
@@ -110,7 +110,7 @@ const Index = () => {
 					columns={[
 						{ title: 'Name', field: 'name', cellStyle: { minWidth: 115 } },
 						{ title: 'App Code', field: 'appCode', cellStyle: { minWidth: 115 } },
-						{ title: 'Id External', field: 'idExternal', cellStyle: { minWidth: 300 } },
+						{ title: 'Main Serial Number', field: 'idExternal', cellStyle: { minWidth: 300 } },
 						{ title: 'Owner Email', field: 'emailOwner', cellStyle: { minWidth: 265 } },
 						{ title: 'Installer Email', field: 'emailInstaller', cellStyle: { minWidth: 265 } },
 						{ title: 'Postal Code', field: 'postalCode', type: 'numeric', cellStyle: { minWidth: 115 } },

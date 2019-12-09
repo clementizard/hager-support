@@ -77,7 +77,7 @@ const InstallPanel = ({
         <Divider />
         <List disablePadding>
           {data[userId].installations && data[userId].installations.map((install, installId) => (
-            <Fragment key={install.id}>
+            <Fragment key={install.serial}>
               <ListItem button onClick={handleSelectInstall(install.id)}>
                 <ListItemIcon>
                   <InboxIcon />
@@ -88,7 +88,7 @@ const InstallPanel = ({
               <Collapse in={listOpen[installId]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding style={{ paddingLeft: 32 }}>
                   {install.devices.map((device) => (
-                    <ListItem button key={device.id}>
+                    <ListItem button key={device.serial}>
                       <ListItemText primary={device.type} />
                     </ListItem>
                   ))}

@@ -1,17 +1,19 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { withTranslation } from 'Tools/i18n';
+import { getLayout } from 'Layouts/LayoutFull';
 import useWeather from 'Services/Weather/hook';
-import Card from './Card';
+import Card from 'Components/Dashboard/Card';
+import { PageTitle } from 'Components/Dashboard/Card/Styles';
 import { Container } from './Styles';
 import { propTypes, defaultProps } from './Props';
-import { PageTitle } from "./Card/Styles";
 
-const Dashboard = () => {
+const Dashboard = ({ t }) => {
   const { status, data } = useWeather();
-
+  
   return [
-    <PageTitle key="title">Weather services</PageTitle>,
+    <PageTitle key="title">{t('dashboard:title')}</PageTitle>,
     <Container key="content">
       {status === 'success' && data.map((metric, id) => (
         <Card
@@ -31,6 +33,8 @@ const Dashboard = () => {
 Dashboard.propTypes = propTypes;
 Dashboard.defaultProps = defaultProps;
 Dashboard.whyDidYouRender = true;
+Dashboard.getInitialProps = async() => ({ namespacesRequired: ['dashboard'] });
+Dashboard.getLayout = getLayout;
 
-export default Dashboard;
+export default withTranslation('dashboard')(Dashboard);
 

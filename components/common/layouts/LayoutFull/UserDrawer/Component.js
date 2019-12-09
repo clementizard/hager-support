@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Dashboard from '@material-ui/icons/Dashboard';
@@ -8,37 +8,53 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import Close from '@material-ui/icons/Close';
+import Refresh from '@material-ui/icons/Refresh';
 
-import { useUserState, useUserDispatch } from 'Services/User';
+import { useUserState, useUserDispatch, getUser } from 'Services/User';
 import {
   Container,
   DashboardIcon,
   StyledTooltip,
+  TooltipTitle,
 } from './Styles';
 import { propTypes, defaultProps } from './Props';
 
 const UserDrawer = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { data } = useUserState();
+  const { data, status } = useUserState();
   const dispatch = useUserDispatch();
 
   const DividerStyles = {
     margin: '12px 16px 3px',
+    backgroundColor: 'transparent',
   };
 
   const handleClose = userId => (e) => {
     e.preventDefault();
-    console.log('Should close :', userId);
     dispatch({ type: 'userDelete', payload: { userId } });
     if (id && userId === id) router.push('/user');
   };
-  
+  const handleReload = userId => (e) => {
+    e.preventDefault();
+    getUser(dispatch, userId);
+  };
+
+  const userStatus = status.users && status.users[id];
   const CustomTooltip = ({ title, userId }) => (
     <StyledTooltip>
-      {title}
+      <TooltipTitle>{title}</TooltipTitle>
       <Divider variant="middle" style={DividerStyles}/>
-      <Button variant="contained" onClick={handleClose(userId)}>Close User</Button>
+      <Button variant="contained" onClick={handleClose(userId)}><Close />Close</Button>
+      <Divider variant="middle" style={DividerStyles}/>
+      <Button
+        variant="contained"
+        onClick={handleReload(userId)}
+        disabled={userStatus === 'loading'}
+      >
+        <Refresh />Reload
+      </Button>
     </StyledTooltip>
   );
   
@@ -70,7 +86,6 @@ const UserDrawer = () => {
               placement="right"
               interactive
               disableTouchListener
-              onClick={(e) => e.preventDefault()}
             >
               <IconButton>
                 <AccountBox />

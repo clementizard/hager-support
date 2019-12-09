@@ -3,8 +3,3 @@ describe('My First Test', function() {
 		cy.visit('/');
 	})
 });
-
-// chris_pix_
-
-// Minnie2208 Bracelet
-// ade_mumlife

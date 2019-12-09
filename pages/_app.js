@@ -1,5 +1,6 @@
 import React from 'react';
 import App from 'next/app';
+import { appWithTranslation } from 'Tools/i18n';
 
 import GlobalStyles from '../styles/common/GlobalStyles';
 
@@ -17,4 +18,4 @@ class MyApp extends App {
 	}
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
