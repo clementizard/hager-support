@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router'
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Assessment from '@material-ui/icons/Assessment';
 import AssessmentOutlined from '@material-ui/icons/AssessmentOutlined';
 import MaterialTable from 'material-table';
@@ -68,8 +67,6 @@ const Index = () => {
 	const selectedInstall = selected[userId] && selected[userId].install && installations.find(el => el.id === selected[userId].install);
 	const selectedInstallDevices = selectedInstall && selectedInstall.devices;
 	const failingEquipments = getEquipmentsInError(installations);
-	
-	console.log('failingEquipments', failingEquipments);
 	
 	return (
 		<Container>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/icons/Menu';
 
@@ -66,5 +66,5 @@ AppBar.propTypes = propTypes;
 AppBar.defaultProps = defaultProps;
 AppBar.whyDidYouRender = true;
 
-export default AppBar;
+export default memo(AppBar);
 

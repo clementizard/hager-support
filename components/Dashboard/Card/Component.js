@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, memo } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Arrow from '@material-ui/icons/KeyboardArrowDown';
 
@@ -55,5 +55,5 @@ Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
 Card.whyDidYouRender = true;
 
-export default Card;
+export default memo(Card);
 

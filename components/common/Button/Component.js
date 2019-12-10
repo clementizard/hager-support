@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import MuiButton from '@material-ui/core/Button';
 
 import {
@@ -37,5 +37,4 @@ Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 Button.whyDidYouRender = true;
 
-export default Button;
-
+export default memo(Button);

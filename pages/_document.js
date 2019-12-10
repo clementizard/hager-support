@@ -3,11 +3,6 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 
-if (process.env.NODE_ENV !== 'production') {
-	const whyDidYouRender = require('@welldone-software/why-did-you-render/dist/no-classes-transpile/umd/whyDidYouRender.min.js');
-	whyDidYouRender(React);
-}
-
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
 		const sheet = new ServerStyleSheet();

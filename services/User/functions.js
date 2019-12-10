@@ -61,7 +61,6 @@ export const getUser = async (dispatch, userId) => {
 			install.devices = formatTimeDevice(deviceData);
 		});
 		finalUser.installations = formattedInstalls;
-		console.log('Will dispatch userSuccess: ', finalUser);
 		dispatch({
 			type: 'userUpdateSuccess',
 			payload: {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo, useCallback } from 'react';
 import { useRouter } from 'next/router';
 
 import {
@@ -16,7 +16,7 @@ const LayoutUser = ({ children }) => {
   const { id } = router.query;
   
   const [drawerOpen, setDrawerOpen] = useState(Boolean(id));
-  const handleDrawerOpen = state => () => setDrawerOpen(state);
+  const handleDrawerOpen = useCallback(state => () => setDrawerOpen(state), []);
 
   const [detailsOpen, setDetailsOpen] = useState(-1);
   const handleDetailsOpen = detailsId => () => {
@@ -51,5 +51,4 @@ LayoutUser.propTypes = propTypes;
 LayoutUser.defaultProps = defaultProps;
 LayoutUser.whyDidYouRender = true;
 
-export default LayoutUser;
-
+export default memo(LayoutUser);

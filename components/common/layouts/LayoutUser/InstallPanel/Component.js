@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, memo } from 'react';
 import { useRouter } from 'next/router';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
@@ -105,5 +105,4 @@ InstallPanel.propTypes = propTypes;
 InstallPanel.defaultProps = defaultProps;
 InstallPanel.whyDidYouRender = true;
 
-export default InstallPanel;
-
+export default memo(InstallPanel);

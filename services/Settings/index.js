@@ -1,11 +1,9 @@
 import {
 	SettingsProvider,
-	useSettingsDispatch,
-	useSettingsState,
+	useSettings,
 } from './context';
 
 export {
 	SettingsProvider,
-	useSettingsState,
-	useSettingsDispatch,
+	useSettings,
 };

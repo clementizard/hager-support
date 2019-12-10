@@ -9,11 +9,11 @@ import { PageTitle } from 'Components/Dashboard/Card/Styles';
 import { Container } from './Styles';
 import { propTypes, defaultProps } from './Props';
 
-const Dashboard = ({ t }) => {
+const Dashboard = ({ t: translation }) => {
   const { status, data } = useWeather();
-  
+
   return [
-    <PageTitle key="title">{t('dashboard:title')}</PageTitle>,
+    <PageTitle key="title">{translation('dashboard:title')}</PageTitle>,
     <Container key="content">
       {status === 'success' && data.map((metric, id) => (
         <Card
