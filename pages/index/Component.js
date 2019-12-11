@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { withTranslation } from 'Tools/i18n';
@@ -9,11 +9,11 @@ import { PageTitle } from 'Components/Dashboard/Card/Styles';
 import { Container } from './Styles';
 import { propTypes, defaultProps } from './Props';
 
-const Dashboard = ({ t: translation }) => {
+const Dashboard = ({ t }) => {
   const { status, data } = useWeather();
 
   return [
-    <PageTitle key="title">{translation('dashboard:title')}</PageTitle>,
+    <PageTitle key="title">{t('dashboard:title')}</PageTitle>,
     <Container key="content">
       {status === 'success' && data.map((metric, id) => (
         <Card

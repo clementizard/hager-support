@@ -1,0 +1,12 @@
+{
+  "dashboardBtn": "Weather Services",
+  "userBtn": "Search a user",
+  "optionsBtn": "Settings",
+  "userActions": {
+    "reload": "Reload",
+    "close": "Close"
+  },
+  "settingsDialog": {
+    "language": "Language"
+  }
+}

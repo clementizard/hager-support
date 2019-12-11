@@ -1,36 +1,43 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useMemo } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Dashboard from '@material-ui/icons/Dashboard';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import Settings from '@material-ui/icons/Settings';
 
+import { withTranslation } from 'Tools/i18n';
 import UserButtonList from './UserButtonList';
 import DashboardButton from './DashboardButton';
 import SettingsDialog from './SettingsDialog';
 import { Container } from './Styles';
 import { propTypes, defaultProps } from './Props';
 
-const UserDrawer = () => {
+const UserDrawer = ({ t }) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const handleSettingsOpen = () => setSettingsOpen(!settingsOpen);
   
-  return [
+  const router = useRouter();
+  const activeRoute = router.pathname === '/user/[id]' ? router.query && router.query.id : router.pathname;
+  
+  return useMemo(() => ([
     <Container key="container">
       <Link href="/">
         <DashboardButton
-          title="Weather services"
+          title={t('userdrawer:dashboardBtn')}
           Icon={Dashboard}
+          active={activeRoute === '/'}
         />
       </Link>
       <Link href="/user">
         <DashboardButton
-          title="Add user"
+          title={t('userdrawer:userBtn')}
           Icon={PersonAdd}
+          active={activeRoute === '/user'}
         />
       </Link>
-      <UserButtonList />
+      <UserButtonList activeUser={activeRoute} />
       <DashboardButton
-        title="Open settings"
+        title={t('userdrawer:optionsBtn')}
         Icon={Settings}
         bottom
         onClick={handleSettingsOpen}
@@ -41,10 +48,10 @@ const UserDrawer = () => {
       open={settingsOpen}
       onClose={handleSettingsOpen}
     />
-  ];
+  ]), [settingsOpen, activeRoute]);
 };
 UserDrawer.propTypes = propTypes;
 UserDrawer.defaultProps = defaultProps;
 UserDrawer.whyDidYouRender = true;
 
-export default memo(UserDrawer);
+export default withTranslation('userdrawer')(memo(UserDrawer));

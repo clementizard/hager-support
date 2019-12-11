@@ -1,0 +1,37 @@
+{
+  "userPanel": {
+    "title": "User",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "email": "Email",
+    "myHagerId": "MyHager ID"
+  },
+  "errorPanel": {
+    "title": "Errors",
+    "type": "Type",
+    "name": "Name"
+  },
+  "installPanel": {
+    "title": "Installations",
+    "name": "Name",
+    "appCode": "App Code",
+    "mainSerialNumber": "Main Serial Number",
+    "ownerEmail": "Owner Email",
+    "installerEmail": "Installer Email",
+    "postalCode": "Postal Code",
+    "city": "City",
+    "country": "Country",
+    "installedDate": "Installed Date",
+    "heartbit": "Heartbit"
+  },
+  "devicePanel": {
+    "title": "Devices",
+    "type": "Type",
+    "serial": "Serial Number",
+    "reference": "Reference",
+    "softwareVersion": "Software Version",
+    "installDate": "Installed Date",
+    "lastEdit": "Last Edit",
+    "lastDataExchanged": "Last Data Exchanged"
+  }
+}

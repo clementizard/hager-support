@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import Search from '@material-ui/icons/Search';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { withTranslation } from 'Tools/i18n';
+import { getLayout } from 'Layouts/LayoutUser';
 import {
   useUserDispatch,
   useUserState,
@@ -15,7 +17,7 @@ import {
 } from './Styles';
 import { propTypes, defaultProps } from './Props';
 
-const Empty = () => {
+const Empty = ({ t }) => {
   const router = useRouter();
   const [userId, setUserId] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -42,7 +44,7 @@ const Empty = () => {
   return (
     <Container>
       <TextField
-        label="myHager Id"
+        label={t('usersearch:myHagerId')}
         margin="normal"
         variant="outlined"
         autoFocus
@@ -51,7 +53,7 @@ const Empty = () => {
         disabled={loading}
       />
       <TextField
-        label="Email"
+        label={t('usersearch:email')}
         margin="normal"
         variant="outlined"
         fullWidth
@@ -67,7 +69,7 @@ const Empty = () => {
         disabled={loading}
       >
         <Search />
-        Search
+        {t('usersearch:search')}
       </Button>
       {loading && (
         <div
@@ -86,6 +88,7 @@ const Empty = () => {
 Empty.propTypes = propTypes;
 Empty.defaultProps = defaultProps;
 Empty.whyDidYouRender = true;
+Empty.getLayout = getLayout;
 
-export default Empty;
+export default withTranslation('usersearch')(Empty);
 

@@ -8,7 +8,9 @@ import DashboardButton from '../DashboardButton';
 import CustomTooltip from './CustomTooltip';
 import { propTypes, defaultProps } from './Props';
 
-const UserButtonList = () => {
+const UserButtonList = ({
+  activeUser,
+}) => {
   const { data, status } = useUserState();
   const dispatch = useUserDispatch();
   const [buttons, setButtons] = useState([]);
@@ -27,35 +29,34 @@ const UserButtonList = () => {
   };
   
   useEffect(() => {
-    if (buttons.length !== Object.keys(data).length) {
-      const out = [];
-  
-      Object.keys(data).forEach((userId) => {
-        const userStatus = status.users && status.users[userId];
-  
-        out.push(
-          <Link href={`/user/${userId}`} key={userId}>
-            <DashboardButton
-              title={
-                <CustomTooltip
-                  userStatus={userStatus}
-                  title={`${data[userId].firstname} ${data[userId].lastname}`}
-                  handleClose={handleClose(userId)}
-                  handleReload={handleReload(userId)}
-                />
-              }
-              Icon={AccountBox}
-              tooltipProps={{
-                interactive: true,
-              }}
-            />
-          </Link>
-        );
-      });
-  
-      setButtons(out);
-    }
-  });
+    const out = [];
+
+    Object.keys(data).forEach((userId) => {
+      const userStatus = status.users && status.users[userId];
+
+      out.push(
+        <Link href={`/user/${userId}`} key={userId}>
+          <DashboardButton
+            title={
+              <CustomTooltip
+                userStatus={userStatus}
+                title={`${data[userId].firstname} ${data[userId].lastname}`}
+                handleClose={handleClose(userId)}
+                handleReload={handleReload(userId)}
+              />
+            }
+            Icon={AccountBox}
+            tooltipProps={{
+              interactive: true,
+            }}
+            active={activeUser === userId}
+          />
+        </Link>
+      );
+    });
+
+    setButtons(out);
+  }, [activeUser, Object.keys(data).length]);
   
   return buttons;
 };

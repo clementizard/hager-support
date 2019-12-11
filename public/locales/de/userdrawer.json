@@ -1,0 +1,12 @@
+{
+  "dashboardBtn": "Services Wetter",
+  "userBtn": "Suchen Sie einen Benutzer",
+  "optionsBtn": "die Einstellungen",
+  "userActions": {
+    "reload": "Neu laden",
+    "close": "Schließen"
+  },
+  "settingsDialog": {
+    "language": "Sprache"
+  }
+}

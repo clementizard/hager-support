@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,30 +9,31 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import { withTranslation } from 'Tools/i18n';
 import { useSettings } from 'Services/Settings';
 import { propTypes, defaultProps } from './Props';
 
 const SettingsDialog = ({
   open,
   onClose,
+  t,
 }) => {
   const { onChange, data } = useSettings();
   const handleLanguageChange = (e) => {
     onChange({ lang: e.target.value });
   };
 
-  console.log('Settings: ', JSON.stringify(data));
-  
   return (
     <Dialog
       key="dialog"
       open={open}
       onClose={onClose}
+      maxWidth="md"
     >
-      <DialogTitle>Settings</DialogTitle>
+      <DialogTitle>{t('optionsBtn')}</DialogTitle>
       <DialogContent>
-        <FormControl fullWidth>
-          <InputLabel>Lang</InputLabel>
+        <FormControl fullWidth style={{ width: 300 }}>
+          <InputLabel>{t('userdrawer:settingsDialog.language')}</InputLabel>
           <Select
             value={data.lang}
             onChange={handleLanguageChange}
@@ -55,5 +56,4 @@ SettingsDialog.propTypes = propTypes;
 SettingsDialog.defaultProps = defaultProps;
 SettingsDialog.whyDidYouRender = true;
 
-export default SettingsDialog;
-
+export default withTranslation('userdrawer')(memo(SettingsDialog));

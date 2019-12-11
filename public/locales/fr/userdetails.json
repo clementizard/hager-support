@@ -1,0 +1,37 @@
+{
+  "userPanel": {
+    "title": "Utilisateur",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "email": "email",
+    "myHagerId": "Identifiant MyHager"
+  },
+  "errorPanel": {
+    "title": "Erreurs",
+    "type": "Type",
+    "name": "Nom"
+  },
+  "installPanel": {
+    "title": "Installations",
+    "name": "Nom",
+    "appCode": "App Code",
+    "mainSerialNumber": "Numéro de série principal",
+    "ownerEmail": "Email du propriétaire",
+    "installerEmail": "Email de l'installateur",
+    "postalCode": "Code Postal",
+    "city": "Ville",
+    "country": "Pays",
+    "installedDate": "Date d'installation",
+    "heartbit": "Heartbit"
+  },
+  "devicePanel": {
+    "title": "Dispositifs",
+    "type": "Type",
+    "serial": "Numéro de série",
+    "reference": "Référence",
+    "softwareVersion": "Version de logiciel",
+    "installDate": "Date d'installation",
+    "lastEdit": "Dernière modification",
+    "lastDataExchanged": "Dernières données échangées"
+  }
+}

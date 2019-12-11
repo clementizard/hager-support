@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useCallback, useMemo } from 'react';
 
 import { i18n } from 'Tools/i18n';
 import defaultState from './default';
@@ -9,18 +9,23 @@ export const SettingsProvider = ({ children }) => {
 	const defState = process.browser && localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')) : defaultState;
 	const [state, setState] = useState(defState);
 	
-	const handleStateChange = (changes) => {
+	const handleStateChange = useCallback((changes) => {
 		const newState = {
 			...state,
 			...changes,
 		};
-		if (newState.lang !== state.lang) i18n.changeLanguage(newState.lang);
+		i18n.changeLanguage(newState.lang);
 		setState(newState);
 		if (process.browser) localStorage.setItem('settings', JSON.stringify(newState));
-	};
+	}, []);
+	
+	const values = useMemo(() => ({
+		onChange: handleStateChange,
+		data: state,
+	}), [handleStateChange, state]);
 
 	return (
-		<SettingsStateContext.Provider value={{ onChange: handleStateChange, data: state }}>
+		<SettingsStateContext.Provider value={values}>
 			{children}
 		</SettingsStateContext.Provider>
 	);

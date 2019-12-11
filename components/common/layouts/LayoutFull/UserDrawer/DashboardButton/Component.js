@@ -11,10 +11,15 @@ const DashboardButton = ({
   bottom,
   onClick,
   tooltipProps,
+  active,
 }) => {
   return (
-    <Container bottom={bottom}>
-      <Tooltip title={title} placement="right" {...tooltipProps}>
+    <Container bottom={bottom} active={active}>
+      <Tooltip
+        title={title}
+        placement="right"
+        {...tooltipProps}
+      >
         <IconButton onClick={onClick}>
           <Icon />
         </IconButton>

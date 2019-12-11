@@ -1,0 +1,12 @@
+{
+  "dashboardBtn": "Météo des services",
+  "userBtn": "Rechercher un utilisateur",
+  "optionsBtn": "Options",
+  "userActions": {
+    "reload": "Recharger",
+    "close": "Fermer"
+  },
+  "settingsDialog": {
+    "language": "Langue"
+  }
+}
