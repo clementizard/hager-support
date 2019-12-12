@@ -12,32 +12,34 @@ import AppBar from './AppBar';
 import InstallPanel from './InstallPanel';
 
 const LayoutUser = ({ children }) => {
-  const router = useRouter();
-  const { id } = router.query;
+  // const router = useRouter();
+  // const { id } = router.query;
   
-  const [drawerOpen, setDrawerOpen] = useState(Boolean(id));
-  const handleDrawerOpen = useCallback(state => () => setDrawerOpen(state), []);
+  // const [drawerOpen, setDrawerOpen] = useState(Boolean(id));
+  // const handleDrawerOpen = useCallback(state => () => setDrawerOpen(state), []);
+  // useEffect(() => {
+  //   setDrawerOpen(Boolean(id));
+  // }, [id]);
 
   const [detailsOpen, setDetailsOpen] = useState(-1);
   const handleDetailsOpen = detailsId => () => {
-      if (detailsOpen === detailsId) setDetailsOpen(-1);
-      else setDetailsOpen(detailsId);
+    if (detailsOpen === detailsId) setDetailsOpen(-1);
+    else setDetailsOpen(detailsId);
   };
-
-  useEffect(() => {
-    setDrawerOpen(Boolean(id));
-  }, [id]);
   
   return (
-    <Container drawerOpen={drawerOpen} detailsOpen={detailsOpen !== -1}>
+    <Container
+      // drawerOpen={drawerOpen}
+      detailsOpen={detailsOpen !== -1}
+    >
       <AppBar
-        drawerOpen={drawerOpen}
-        drawerDisabled={!Boolean(id)}
-        onOpenDrawer={handleDrawerOpen(true)}
+        // drawerOpen={drawerOpen}
+        // drawerDisabled={!Boolean(id)}
+        // onOpenDrawer={handleDrawerOpen(true)}
         detailsOpen={detailsOpen}
         onOpenDetails={handleDetailsOpen}
       />
-      <InstallPanel open={drawerOpen} onClose={handleDrawerOpen(false)} />
+      {/*<InstallPanel open={drawerOpen} onClose={handleDrawerOpen(false)} />*/}
       <Inner>
         {children}
       </Inner>

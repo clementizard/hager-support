@@ -23,8 +23,6 @@ const Empty = ({ t }) => {
   const [userEmail, setUserEmail] = useState('');
   const dispatch = useUserDispatch();
   const { status, data } = useUserState();
-  
-  console.log('Status: ', status.users[userId]);
 
   const loading = status.users[userId] === 'loading';
   const handleUUIDChange = ({ target: { value }}) => {

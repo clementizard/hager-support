@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/icons/Menu';
+// import IconButton from '@material-ui/core/IconButton';
+// import Menu from '@material-ui/icons/Menu';
 
-import Button from 'Components/common/Button';
+import Card from 'Components/Card';
+import Button from 'Components/Button';
 import useWeather from 'Services/Weather/hook';
 import {
   Container,
@@ -11,27 +12,26 @@ import {
   Bar,
 } from './Styles';
 import { propTypes, defaultProps } from './Props';
-import Card from 'Components/Dashboard/Card';
 
 const AppBar = ({
-  drawerOpen,
-  drawerDisabled,
-  onOpenDrawer,
+  // drawerOpen,
+  // drawerDisabled,
+  // onOpenDrawer,
   detailsOpen,
   onOpenDetails,
 }) => {
   const { status, data } = useWeather();
-  
+
   return (
     <Container open={detailsOpen !== -1}>
       <Bar>
-        {(!drawerOpen && !drawerDisabled) &&
-          <div style={{ position: 'absolute', left: 16 }}>
-            <IconButton onClick={onOpenDrawer}>
-              <Menu />
-            </IconButton>
-          </div>
-        }
+        {/*{(!drawerOpen && !drawerDisabled) &&*/}
+        {/*  <div style={{ position: 'absolute', left: 16 }}>*/}
+        {/*    <IconButton onClick={onOpenDrawer}>*/}
+        {/*      <Menu />*/}
+        {/*    </IconButton>*/}
+        {/*  </div>*/}
+        {/*}*/}
         {status === 'success' && data.map((metric, id) => (
           <Button
             key={metric.title}

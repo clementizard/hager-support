@@ -7,8 +7,9 @@ const SettingsStateContext = createContext();
 
 export const SettingsProvider = ({ children }) => {
 	const defState = process.browser && localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')) : defaultState;
-	const [state, setState] = useState(defState);
-	
+	if (defState && (defState.lang !== 'en')) i18n.changeLanguage(defState.lang);
+	const [state, setState] = useState(defState || {});
+
 	const handleStateChange = useCallback((changes) => {
 		const newState = {
 			...state,

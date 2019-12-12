@@ -20,7 +20,7 @@ const nextConfig = {
 	enableSvg: true,
 	webpack(config) {
 		config.resolve.alias['Components'] = path.join(__dirname, 'components');
-		config.resolve.alias['Layouts'] = path.join(__dirname, 'components/common/layouts');
+		config.resolve.alias['Layouts'] = path.join(__dirname, 'layouts');
 		config.resolve.alias['Services'] = path.join(__dirname, 'services');
 		config.resolve.alias['Public'] = path.join(__dirname, 'public');
 		config.resolve.alias['Styles'] = path.join(__dirname, 'styles');
