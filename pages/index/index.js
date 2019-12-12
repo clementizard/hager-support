@@ -1,3 +1,3 @@
-import Component from './Component';
+import Component from 'Components/pages/index';
 
 export default Component;
