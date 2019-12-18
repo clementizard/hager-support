@@ -146,8 +146,8 @@ const UserDetails = ({ t }) => {
 						{ title: t('userdetails:devicePanel.serial'), field: 'serial', cellStyle: { minWidth: 300 } },
 						{ title: t('userdetails:devicePanel.reference'), field: 'reference', cellStyle: { minWidth: 110 } },
 						{ title: t('userdetails:devicePanel.softwareVersion'), field: 'softwareVersion', cellStyle: { minWidth: 150 } },
-						{ title: t('userdetails:devicePanel.installedDate'), field: 'date', type: 'date', cellStyle: { minWidth: 120 } },
-						{ title: t('userdetails:devicePanel.lastEdit'), field: 'lastEdit', type: 'date', cellStyle: { minWidth: 175 } },
+						// { title: t('userdetails:devicePanel.installedDate'), field: 'date', type: 'date', cellStyle: { minWidth: 120 } },
+						// { title: t('userdetails:devicePanel.lastEdit'), field: 'lastEdit', type: 'date', cellStyle: { minWidth: 175 } },
 						{ title: t('userdetails:devicePanel.lastDataExchanged'), field: 'lastDataExchanged', type: 'date', cellStyle: { minWidth: 175 } },
 					]}
 					detailPanel={[
