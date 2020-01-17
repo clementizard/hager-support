@@ -11,7 +11,7 @@ import {
 export const getDevices = async (dispatch, userId, installId) => {
 	dispatch({ type: 'deviceUpdateStart', payload: { userId, installId } });
 	try {
-		const data = await requestDevices(userId, installId);
+		const data = await requestDevices(installId);
 		dispatch({
 			type: 'deviceUpdateSuccess',
 			payload: {
@@ -26,18 +26,18 @@ export const getDevices = async (dispatch, userId, installId) => {
 };
 
 const formatTimeDevice = (devices) => {
-	devices.forEach(device => {
+	devices.forEach((device) => {
 		if (device.date && device.date.length < 50) {
 			device.date = format(fromUnixTime(parseInt(device.date, 10)), 'dd/MM/y');
 			device.lastEdit = device.lastEdit ? format(fromUnixTime(parseInt(device.lastEdit, 10)), 'dd/MM/y - HH:mm') : '';
 			device.lastDataExchanged = format(fromUnixTime(parseInt(device.lastDataExchanged, 10)), 'dd/MM/y - HH:mm');
 		}
 	});
-	return devices
+	return devices;
 };
 
 const formatTime = (installs) => {
-	installs.forEach(install => {
+	installs.forEach((install) => {
 		if (install.date && install.date.length < 50) {
 			install.date = format(fromUnixTime(parseInt(install.date, 10)), 'dd/MM/y');
 			install.heartbit = format(fromUnixTime(parseInt(install.heartbit, 10)), 'dd/MM/y - HH:mm');
@@ -69,7 +69,6 @@ export const getUser = async (dispatch, userId) => {
 			},
 		});
 	} catch (error) {
-		console.error(error);
 		dispatch({ type: 'userUpdateFail', payload: { error, userId } });
 	}
 };

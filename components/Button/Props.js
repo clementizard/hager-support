@@ -17,7 +17,7 @@ export const defaultProps = {
 		label: 'var(--status-info-background)',
 	},
 	font: {
-		weight: 500
+		weight: 500,
 	},
 	containerStyle: {},
 };

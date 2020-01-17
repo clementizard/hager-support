@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export default styled.div`
 	width: auto;
 	height: 100px;
 	margin: 48px;

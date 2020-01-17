@@ -1,4 +1,5 @@
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
+import PropTypes from 'prop-types';
 
 import defaultState from './default';
 import userReducer from './reducer';
@@ -9,16 +10,17 @@ const UserDispatchContext = createContext();
 export const UserProvider = ({ children }) => {
 	const oldStateUnparsed = typeof window !== 'undefined' ? localStorage.getItem('User') : null;
 	const oldState = oldStateUnparsed ? JSON.parse(oldStateUnparsed) : null;
-	const [state, dispatch] = React.useReducer(userReducer, oldState || defaultState);
-	
+	const [state, dispatch] = useReducer(userReducer, oldState || defaultState);
+
 	return (
 		<UserStateContext.Provider value={state}>
 			<UserDispatchContext.Provider value={dispatch}>
 				{children}
 			</UserDispatchContext.Provider>
 		</UserStateContext.Provider>
-	)
+	);
 };
+UserProvider.propTypes = { children: PropTypes.any.isRequired };
 
 export const useUserState = () => {
 	const context = useContext(UserStateContext);

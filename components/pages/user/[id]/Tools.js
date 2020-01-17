@@ -1,7 +1,7 @@
-export const getEquipmentsInError = (installations) => {
+export default (installations) => {
 	const out = [];
-	
-	installations.forEach(install => {
+
+	installations.forEach((install) => {
 		if (install.status === 'ko') {
 			out.push({
 				id: install.id,
@@ -9,7 +9,7 @@ export const getEquipmentsInError = (installations) => {
 				type: install.appCode,
 			});
 			if (install.devices) {
-				install.devices.forEach(device => {
+				install.devices.forEach((device) => {
 					if (device.status === 'ko') {
 						out.push({
 							id: device.id,
@@ -21,6 +21,6 @@ export const getEquipmentsInError = (installations) => {
 			}
 		}
 	});
-	
+
 	return out;
 };

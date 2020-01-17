@@ -5,10 +5,10 @@ import { updateWeather } from './functions';
 export default () => {
 	const { status, data } = useWeatherState();
 	const dispatch = useWeatherDispatch();
-	
+
 	useEffect(() => {
-		if (!data.length) updateWeather(dispatch);
-	}, []);
-	
+		if (!data || !data.length) updateWeather(dispatch);
+	}, [data, dispatch]);
+
 	return { status, data };
-}
+};

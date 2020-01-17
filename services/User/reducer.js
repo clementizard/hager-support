@@ -3,15 +3,15 @@ export default (state, {
 	payload: {
 		userId,
 		installId,
-		deviceId,
+		// deviceId,
 		item,
 		value,
 		error,
 		data,
-	}
+	},
 }) => {
 	let newState;
-	
+
 	switch (type) {
 		case 'deviceUpdateStart':
 			return {
@@ -41,10 +41,10 @@ export default (state, {
 							[installId]: {
 								...state.data[userId].installations[installId],
 								devices: error,
-							}
-						}
-					}
-				}
+							},
+						},
+					},
+				},
 			};
 		case 'deviceUpdateSuccess':
 			return {
@@ -64,10 +64,10 @@ export default (state, {
 							[installId]: {
 								...state.data[userId].installations[installId],
 								devices: data,
-							}
-						}
-					}
-				}
+							},
+						},
+					},
+				},
 			};
 		case 'userUpdateStart':
 			return {
@@ -95,7 +95,7 @@ export default (state, {
 					[userId]: data,
 				},
 			};
-			
+
 			if (typeof window !== 'undefined') localStorage.setItem('User', JSON.stringify(newState));
 			return newState;
 		case 'userUpdateFail':
@@ -114,12 +114,12 @@ export default (state, {
 				},
 			};
 		case 'userDelete':
-			newState = Object.assign({}, state);
+			newState = { ...state };
 			const successDelete = delete newState.data[userId];
 			if (successDelete) {
 				if (typeof window !== 'undefined') localStorage.setItem('User', JSON.stringify(newState));
 				return newState;
-			} else return state;
+			} return state;
 		case 'userSelect':
 			return {
 				...state,

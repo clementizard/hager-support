@@ -171,4 +171,18 @@ export default createGlobalStyle`
     --component-htmlEditor-background-color: var(--background-color);
     --component-htmlEditor-foreground-color: var(--text-primary-color);
 	}
+	.page-transition-enter {
+	  opacity: 0;
+	}
+	.page-transition-enter-active {
+	  opacity: 1;
+	  transition: opacity 300ms;
+	}
+	.page-transition-exit {
+	  opacity: 1;
+	}
+	.page-transition-exit-active {
+	  opacity: 0;
+	  transition: opacity 300ms;
+	}
 `;

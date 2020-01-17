@@ -9,7 +9,7 @@ export const Container = styled(({ open, ...props }) => <div {...props} />)`
 	grid-template-areas:
 		"appBar"
 		"details";
-	box-shadow: 0px 6px 6px -6px rgba(0,0,0,0.5);
+	box-shadow: 0 6px 6px -6px rgba(0,0,0,0.5);
 	z-index: 1;
 	background-color: var(--default-normal);
 `;

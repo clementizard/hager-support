@@ -149,7 +149,7 @@
       "SSID": "654aw2d087rgs87r"
     },
     "insights": {
-      "lastHeartbit": "1575457200"
+      "lastHeartbit": "04/12/2019 12:00 (UTC)"
     }
   },
   {
@@ -219,7 +219,7 @@
       "Mod Bus Address": "122"
     },
     "insights": {
-      "Last load or unload": "04/12/2019 10:00"
+      "Last load or unload": "04/12/2019 11:00 (UTC)"
     }
   },
   {
@@ -248,7 +248,7 @@
       "Mod Bus Address": "128"
     },
     "insights": {
-      "Last load or unload": "04/12/2019 10:00"
+      "Last load or unload": "04/12/2019 11:00 (UTC)"
     }
   },
   {
@@ -261,7 +261,7 @@
     "softwareVersion": "1.0.2",
     "date": "1524418200",
     "lastEdit": "",
-    "lastDataExchanged": "1575457200",
+    "lastDataExchanged": "1575366000",
     "status": "ko",
     "details": {
       "Vendor Name": "Herholdt",
@@ -276,10 +276,64 @@
       "Production Date (Day)": "180",
       "Production Date (Year)": "2018",
       "Phase Type": "tri phased",
-      "Mod Bus Address": "125"
+      "Mod Bus Address": "125",
+      "messages": [
+        {
+          "date": "29/11/2019",
+          "message": "Ok"
+        },
+        {
+          "date": "30/11/2019",
+          "message": "Ok"
+        },
+        {
+          "date": "1/12/2019",
+          "message": "Ok"
+        },
+        {
+          "date": "2/12/2019",
+          "message": "Ok"
+        },
+        {
+          "date": "3/12/2019",
+          "message": "Ko"
+        }
+      ]
     },
     "insights": {
-      "lastProduction": "More than 24h since last production: 03/12/2019 09:40"
+      "lastProduction": "More than 24h since last production: 03/12/2019 10:40",
+      "graph": {
+        "name": "Production",
+        "axis": [
+          "29/11/2019",
+          "30/11/2019",
+          "1/12/2019",
+          "2/12/2019",
+          "3/12/2019"
+        ],
+        "series": [
+          {
+            "type": "Kwh",
+            "data": [
+              "12",
+              "15",
+              "13",
+              "19",
+              "3"
+            ]
+          },
+          {
+            "type": "Degres",
+            "data": [
+              "30",
+              "38",
+              "34",
+              "43",
+              "32"
+            ]
+          }
+        ]
+      }
     }
   },
   {

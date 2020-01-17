@@ -2,31 +2,31 @@ import React, { memo } from 'react';
 
 import { WeatherProvider } from 'Services/Weather';
 import { UserProvider } from 'Services/User';
+import { InstallationProvider } from 'Services/Installation';
 import { SettingsProvider } from 'Services/Settings';
 import UserDrawer from './UserDrawer';
 import {
-  Container,
-  Inner,
+	Container,
+	Inner,
 } from './Styles';
 import { propTypes, defaultProps } from './Props';
 
-const LayoutFull = ({ children }) => {
-  
-  return (
-    <WeatherProvider>
-      <UserProvider>
-        <SettingsProvider>
-          <Container>
-            <UserDrawer />
-            <Inner>
-              {children}
-            </Inner>
-          </Container>
-        </SettingsProvider>
-      </UserProvider>
-    </WeatherProvider>
-  );
-};
+const LayoutFull = ({ children }) => (
+	<WeatherProvider>
+		<UserProvider>
+			<InstallationProvider>
+				<SettingsProvider>
+					<Container>
+						<UserDrawer />
+						<Inner>
+							{children}
+						</Inner>
+					</Container>
+				</SettingsProvider>
+			</InstallationProvider>
+		</UserProvider>
+	</WeatherProvider>
+);
 LayoutFull.propTypes = propTypes;
 LayoutFull.defaultProps = defaultProps;
 LayoutFull.whyDidYouRender = true;

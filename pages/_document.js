@@ -10,11 +10,10 @@ export default class MyDocument extends Document {
 		const originalRenderPage = ctx.renderPage;
 
 		try {
-			ctx.renderPage = () =>
-				originalRenderPage({
-					enhanceApp: App => props => sheets.collect(sheet.collectStyles(<App {...props} />)),
-				});
-			
+			ctx.renderPage = () => originalRenderPage({
+				enhanceApp: App => props => sheets.collect(sheet.collectStyles(<App {...props} />)),
+			});
+
 			const initialProps = await Document.getInitialProps(ctx);
 
 			return {
@@ -26,15 +25,15 @@ export default class MyDocument extends Document {
 						{sheets.getStyleElement()}
 					</>
 				),
-			}
+			};
 		} finally {
-			sheet.seal()
+			sheet.seal();
 		}
 	}
-	
-	render () {
+
+	render() {
 		return (
-			<html>
+			<html lang="fr">
 				<Head>
 					<meta charSet="utf-8" />
 					<meta

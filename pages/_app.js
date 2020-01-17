@@ -1,6 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import { appWithTranslation } from 'Tools/i18n';
+import { PageTransition } from 'next-page-transitions';
 
 import GlobalStyles from '../styles/common/GlobalStyles';
 
@@ -10,15 +11,27 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 class MyApp extends App {
+	static async getInitialProps({ Component, ctx }) {
+		let pageProps = {};
+
+		if (Component.getInitialProps) {
+			pageProps = await Component.getInitialProps(ctx);
+		}
+
+		return { pageProps };
+	}
+
 	render() {
 		const { Component, pageProps } = this.props;
-		
+
 		const getLayout = Component.getLayout || (page => page);
 		return getLayout(
 			<>
 				<GlobalStyles />
-				<Component {...pageProps} />
-			</>
+				<PageTransition timeout={300} classNames="page-transition">
+					<Component {...pageProps} />
+				</PageTransition>
+			</>,
 		);
 	}
 }

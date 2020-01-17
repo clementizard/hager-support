@@ -9,36 +9,43 @@ import { propTypes, defaultProps } from './Props';
 import { StyledTooltip, TooltipTitle } from './Styles';
 
 const Component = ({
-  title,
-  handleClose,
-  handleReload,
-  userStatus,
-  t,
+	title,
+	handleClose,
+	handleReload,
+	userStatus,
+	userId,
+	t,
 }) => {
-  const DividerStyles = {
-    margin: '12px 16px 3px',
-    backgroundColor: 'transparent',
-  };
+	const DividerStyles = {
+		margin: '12px 16px 3px',
+		backgroundColor: 'transparent',
+	};
 
-  return (
-    <StyledTooltip>
-      <TooltipTitle>{title}</TooltipTitle>
-      <Divider variant="middle" style={DividerStyles}/>
-      <Button variant="contained" onClick={handleClose}><Close />{t('userdrawer:userActions.close')}</Button>
-      <Divider variant="middle" style={DividerStyles}/>
-      <Button
-        variant="contained"
-        onClick={handleReload}
-        disabled={userStatus === 'loading'}
-      >
-        <Refresh />{t('userdrawer:userActions.reload')}
-      </Button>
-    </StyledTooltip>
-  );
+	return (
+		<StyledTooltip>
+			<TooltipTitle>{title}</TooltipTitle>
+			<Divider variant="middle" style={DividerStyles} />
+			<Button
+				variant="contained"
+				onClick={handleClose}
+				data-cy={`user-tooltip-close-${userId}`}
+			>
+				<Close />{t('userdrawer:userActions.close')}
+			</Button>
+			<Divider variant="middle" style={DividerStyles} />
+			<Button
+				variant="contained"
+				onClick={handleReload}
+				disabled={userStatus === 'loading'}
+				data-cy={`user-tooltip-reload-${userId}`}
+			>
+				<Refresh />{t('userdrawer:userActions.reload')}
+			</Button>
+		</StyledTooltip>
+	);
 };
 Component.propTypes = propTypes;
 Component.defaultProps = defaultProps;
 Component.whyDidYouRender = true;
 
 export default withTranslation('userdrawer')(Component);
-

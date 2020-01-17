@@ -1,0 +1,17 @@
+[
+  {
+    "id": "install3",
+    "userId": "09741964-73a3-472b-99a9-e53b73fe9174",
+    "name": "Vacation house",
+    "appCode": "Domovea",
+    "idExternal": "MPCMZ3G5SHVJA5PEZGNSCAD5",
+    "status": "ok",
+    "emailOwner": "johndoe@gmail.com",
+    "emailInstaller": "domoservice@installer.com",
+    "postalCode": "05407-002",
+    "city": "Rio de janeiro",
+    "country": "Brazil",
+    "date": "1566214200",
+    "heartbit": "1575459000"
+  }
+]

@@ -1,4 +1,11 @@
-import { createContext, useContext, useState, useCallback, useMemo } from 'react';
+import {
+	createContext,
+	useContext,
+	useState,
+	useCallback,
+	useMemo,
+} from 'react';
+import PropTypes from 'prop-types';
 
 import { i18n } from 'Tools/i18n';
 import defaultState from './default';
@@ -18,8 +25,8 @@ export const SettingsProvider = ({ children }) => {
 		i18n.changeLanguage(newState.lang);
 		setState(newState);
 		if (process.browser) localStorage.setItem('settings', JSON.stringify(newState));
-	}, []);
-	
+	}, [state]);
+
 	const values = useMemo(() => ({
 		onChange: handleStateChange,
 		data: state,
@@ -31,6 +38,7 @@ export const SettingsProvider = ({ children }) => {
 		</SettingsStateContext.Provider>
 	);
 };
+SettingsProvider.propTypes = { children: PropTypes.any.isRequired };
 
 export const useSettings = () => {
 	const context = useContext(SettingsStateContext);

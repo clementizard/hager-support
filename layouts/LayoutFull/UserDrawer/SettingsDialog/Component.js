@@ -14,43 +14,50 @@ import { useSettings } from 'Services/Settings';
 import { propTypes, defaultProps } from './Props';
 
 const SettingsDialog = ({
-  open,
-  onClose,
-  t,
+	open,
+	onClose,
+	t,
 }) => {
-  const { onChange, data } = useSettings();
-  const handleLanguageChange = (e) => {
-    onChange({ lang: e.target.value });
-  };
+	const { onChange, data } = useSettings();
+	const handleLanguageChange = (e) => {
+		onChange({ lang: e.target.value });
+	};
 
-  return (
-    <Dialog
-      key="dialog"
-      open={open}
-      onClose={onClose}
-      maxWidth="md"
-    >
-      <DialogTitle>{t('optionsBtn')}</DialogTitle>
-      <DialogContent>
-        <FormControl fullWidth style={{ width: 300 }}>
-          <InputLabel>{t('userdrawer:settingsDialog.language')}</InputLabel>
-          <Select
-            value={data.lang}
-            onChange={handleLanguageChange}
-          >
-            <MenuItem value="en">English</MenuItem>
-            <MenuItem value="fr">Francais</MenuItem>
-            <MenuItem value="de">Deutsch</MenuItem>
-          </Select>
-        </FormControl>
-      </DialogContent>
-      <DialogActions>
-        <Button color="primary" onClick={onClose}>
+	return (
+		<Dialog
+			key="dialog"
+			open={open}
+			onClose={onClose}
+			maxWidth="md"
+		>
+			<DialogTitle>{t('optionsBtn')}</DialogTitle>
+			<DialogContent>
+				<FormControl fullWidth style={{ width: 300 }}>
+					<InputLabel data-cy="language-select-label">
+						{t('userdrawer:settingsDialog.language')}
+					</InputLabel>
+					<Select
+						data-cy="language-select"
+						value={data.lang}
+						onChange={handleLanguageChange}
+					>
+						<MenuItem value="en">English</MenuItem>
+						<MenuItem value="fr" data-cy="language-select-value-fr">Francais</MenuItem>
+						<MenuItem value="de">Deutsch</MenuItem>
+					</Select>
+				</FormControl>
+			</DialogContent>
+			<DialogActions>
+				<Button
+					color="primary"
+					onClick={onClose}
+					data-cy="settings-dialog-ok"
+				>
           Ok
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
+				</Button>
+			</DialogActions>
+		</Dialog>
+	);
 };
 SettingsDialog.propTypes = propTypes;
 SettingsDialog.defaultProps = defaultProps;

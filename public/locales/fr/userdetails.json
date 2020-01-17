@@ -3,7 +3,7 @@
     "title": "Utilisateur",
     "firstname": "Prénom",
     "lastname": "Nom",
-    "email": "email",
+    "email": "Email",
     "myHagerId": "Identifiant MyHager"
   },
   "errorPanel": {
@@ -32,6 +32,20 @@
     "softwareVersion": "Version de logiciel",
     "installDate": "Date d'installation",
     "lastEdit": "Dernière modification",
-    "lastDataExchanged": "Dernières données échangées"
+    "lastDataChangeDate": "Dernière modification des données"
+  },
+  "tableLabels": {
+    "pagination": {
+      "labelDisplayedRows": "{from}-{to} sur {count}",
+      "labelRowsSelect": "lignes",
+      "firstTooltip": "Premiere Page",
+      "previousTooltip": "Page Précédente",
+      "nextTooltip": "Page Suivante",
+      "lastTooltip": "Dernière Page"
+    },
+    "toolbar": {
+      "searchTooltip": "Rechercher",
+      "searchPlaceholder": "Rechercher"
+    }
   }
 }

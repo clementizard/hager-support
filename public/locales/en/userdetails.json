@@ -32,6 +32,20 @@
     "softwareVersion": "Software Version",
     "installDate": "Installed Date",
     "lastEdit": "Last Edit",
-    "lastDataExchanged": "Last Data Exchanged"
+    "lastDataChangeDate": "Last Data Change"
+  },
+  "tableLabels": {
+    "pagination": {
+      "labelDisplayedRows": "{from}-{to} of {count}",
+      "labelRowsSelect": "rows",
+      "firstTooltip": "First Page",
+      "previousTooltip": "Previous Page",
+      "nextTooltip": "Next Page",
+      "lastTooltip": "Last Page"
+    },
+    "toolbar": {
+      "searchTooltip": "Search",
+      "searchPlaceholder":"Search"
+    }
   }
 }

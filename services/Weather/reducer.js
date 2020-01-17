@@ -4,7 +4,7 @@ export default (state, action) => {
 		case 'updateSuccess': return { status: 'success', data: action.payload };
 		case 'updateFail': return { status: 'error', data: action.payload };
 		default: {
-			throw new Error(`Unhandled action type: ${action.type}`)
+			throw new Error(`Unhandled action type: ${action.type}`);
 		}
 	}
 };
